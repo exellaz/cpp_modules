@@ -1,33 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   phonebook.cpp                                      :+:      :+:    :+:   */
+/*   PhoneBook.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/07 18:50:52 by kkhai-ki          #+#    #+#             */
-/*   Updated: 2024/11/07 19:33:16 by kkhai-ki         ###   ########.fr       */
+/*   Created: 2024/11/08 15:44:09 by kkhai-ki          #+#    #+#             */
+/*   Updated: 2024/11/08 18:18:02 by kkhai-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include <cstdio>
+#ifndef PHONEBOOK_H
+# define PHONEBOOK_H
 
-class Contact {
+# include "Contact.hpp"
+
+class PhoneBook
+{
 	private:
-		std::string	fname?
+		Contact	_contact_array[8];
+		int		_index;
+
+	public:
+		PhoneBook(void);
 };
 
-int	main(void)
-{
-	std::string	input;
-
-	while (1)
-	{
-		std::getline(std::cin, input);
-		if (input.empty())
-			break ;
-		std::cout << input << std::endl;
-	}
-	return (0);
-}
+#endif

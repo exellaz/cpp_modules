@@ -6,7 +6,7 @@
 #    By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/09 16:06:48 by kkhai-ki          #+#    #+#              #
-#    Updated: 2024/11/07 18:49:13 by kkhai-ki         ###   ########.fr        #
+#    Updated: 2024/11/08 15:41:04 by kkhai-ki         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,10 +19,13 @@ ORANGE = \033[0;38;5;166m
 
 NAME = phonebook
 
-CC = c++
-CFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic -g3
+CC = g++
+CFLAGS = -Wall -Wextra -Werror -I. -std=c++98 -pedantic -g3
 
-SRC = phonebook.cpp
+SRC =	PhoneBook.cpp	\
+		Contact.cpp		\
+		main.cpp
+
 OBJ = $(SRC:.cpp=.o)
 
 all: $(NAME)
