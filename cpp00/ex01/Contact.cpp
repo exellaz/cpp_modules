@@ -6,7 +6,7 @@
 /*   By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 14:21:07 by kkhai-ki          #+#    #+#             */
-/*   Updated: 2024/11/08 15:26:04 by kkhai-ki         ###   ########.fr       */
+/*   Updated: 2024/11/13 13:19:01 by kkhai-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,27 +37,27 @@ void	Contact::set_secret(std::string secret)
 	this->_secret = secret;
 }
 
-std::string	Contact::get_first_name(std::string first_name)
+std::string	Contact::get_first_name(void)
 {
-	return (first_name);
+	return (this->_first_name);
 }
 
-std::string	Contact::get_last_name(std::string last_name)
+std::string	Contact::get_last_name(void)
 {
-	return (last_name);
+	return (this->_last_name);
 }
 
-std::string	Contact::get_nickname(std::string nickname)
+std::string	Contact::get_nickname(void)
 {
-	return (nickname);
+	return (this->_nickname);
 }
 
-std::string	Contact::get_phone_number(std::string phone_number)
+std::string	Contact::get_phone_number(void)
 {
-	return (phone_number);
+	return (this->_phone_number);
 }
 
-std::string	Contact::get_secret(std::string secret)
+std::string	Contact::get_secret(void)
 {
-	return (secret);
+	return (this->_secret);
 }
