@@ -6,7 +6,7 @@
 /*   By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 15:43:56 by kkhai-ki          #+#    #+#             */
-/*   Updated: 2024/11/13 17:26:31 by kkhai-ki         ###   ########.fr       */
+/*   Updated: 2024/11/13 20:02:35 by kkhai-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ PhoneBook::PhoneBook(void)
 	return ;
 }
 
-// PhoneBook::~PhoneBook(void)
-// {
-// 	return ;
-// }
+PhoneBook::~PhoneBook(void)
+{
+	return ;
+}
 
 std::string	PhoneBook::_truncate(std::string str)
 {
@@ -92,7 +92,6 @@ void	PhoneBook::add_contact(void)
 		;
 }
 
-
 void	PhoneBook::display_contact_table(void)
 {
 	std::cout	<< "+----------+----------+----------+----------+" << std::endl
@@ -116,6 +115,36 @@ void	PhoneBook::display_contact_table(void)
 			std::cout << "+----------+----------+----------+----------+" << std::endl;
 		}
 	}
+	// while (std::cin.get() != '\n')
+	// 	;
+}
+
+void	PhoneBook::search_contact(void)
+{
+	std::string	input;
+	size_t		index;
+
+	get_input("Index of contact to display:", input);
+	index = input[0] - '0';
+	system("clear");
+	if (input.length() != 1 || !std::isdigit(input[0]))
+	{
+		std::cout << "Invalid index! Please enter a digit from 0 to 7." << std::endl;
+	}
+	else if (this->_contact_array[index].get_first_name() == "")
+	{
+		std::cout << "No record at index [" << index << "]. ADD a contact and try again." << std::endl;
+	}
+	else
+	{
+		std::cout << "CONTACT[" << index << "]" << std::endl;
+		std::cout << "FIRST NAME: " << this->_contact_array[index].get_first_name() << std::endl;
+		std::cout << "LAST NAME: " << this->_contact_array[index].get_last_name() << std::endl;
+		std::cout << "NICKNAME: " << this->_contact_array[index].get_nickname() << std::endl;
+		std::cout << "PHONE NUMBER: " << this->_contact_array[index].get_phone_number() << std::endl;
+		std::cout << "DARKEST SECRET: " << this->_contact_array[index].get_secret() << std::endl;
+	}
+	std::cout << "Press Enter to continue..." << std::endl;
 	while (std::cin.get() != '\n')
 		;
 }

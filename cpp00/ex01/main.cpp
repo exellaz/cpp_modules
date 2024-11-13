@@ -6,12 +6,11 @@
 /*   By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 18:50:52 by kkhai-ki          #+#    #+#             */
-/*   Updated: 2024/11/13 17:17:19 by kkhai-ki         ###   ########.fr       */
+/*   Updated: 2024/11/13 20:02:00 by kkhai-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
-#include <cstdlib>
 
 int	main(void)
 {
@@ -37,6 +36,7 @@ int	main(void)
 		{
 			//Do SEARCH
 			phonebook.display_contact_table();
+			phonebook.search_contact();
 			system("clear");
 		}
 		else
