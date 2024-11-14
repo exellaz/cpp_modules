@@ -6,7 +6,7 @@
 /*   By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 15:43:56 by kkhai-ki          #+#    #+#             */
-/*   Updated: 2024/11/14 18:40:17 by kkhai-ki         ###   ########.fr       */
+/*   Updated: 2024/11/14 19:03:41 by kkhai-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,23 +60,66 @@ void	PhoneBook::get_input(std::string prompt, std::string &str)
 void	PhoneBook::add_contact(void)
 {
 	std::string	input;
+	Contact	t_contact;
 
-	get_input("Enter your first name:", input);
-	_contact_array[this->_index].set_first_name(input);
-	get_input("Enter your last name:", input);
-	_contact_array[this->_index].set_last_name(input);
-	get_input("Enter your nickname:", input);
-	_contact_array[this->_index].set_nickname(input);
-	get_input("Enter your phone number:", input);
-	_contact_array[this->_index].set_phone_number(input);
-	get_input("Enter your darkest secret:", input);
-	_contact_array[this->_index].set_secret(input);
+	// get_input("Enter your first name:", input);
+	// _contact_array[this->_index].set_first_name(input);
+	// get_input("Enter your last name:", input);
+	// _contact_array[this->_index].set_last_name(input);
+	// get_input("Enter your nickname:", input);
+	// _contact_array[this->_index].set_nickname(input);
+	// get_input("Enter your phone number:", input);
+	// _contact_array[this->_index].set_phone_number(input);
+	// get_input("Enter your darkest secret:", input);
+	// _contact_array[this->_index].set_secret(input);
+	if (set_contact_details(t_contact) == false)
+		return ;
+	_contact_array[this->_index] = t_contact;
 	if (this->_index == 7)
 		this->_index = 0;
 	else
 		this->_index++;
 	std::cout << "Contact added Successfully" << std::endl;
 	wait_for_enter();
+}
+
+bool PhoneBook::set_contact_details(Contact &t_contact)
+{
+	if (parse_and_set_input("Enter first name: ", t_contact, &Contact::set_first_name) == false)
+		return (false);
+	if (parse_and_set_input("Enter last name: ", t_contact, &Contact::set_last_name) == false)
+		return (false);
+	if (parse_and_set_input("Enter nick name: ", t_contact, &Contact::set_nickname) == false)
+		return (false);
+	if (parse_and_set_input("Enter phone number: ", t_contact, &Contact::set_phone_number) == false)
+		return (false);
+	if (parse_and_set_input("Enter dark secret: ", t_contact, &Contact::set_secret) == false)
+		return (false);
+	return (true);
+}
+
+bool PhoneBook::parse_and_set_input(std::string prompt, Contact &t_contact, void (Contact::*func)(std::string))
+{
+	std::string input;
+
+	while (1)
+	{
+		get_input(prompt, input);
+		if (std::cin.eof())
+			exit(0);
+		else if (input == "BACK")
+		{
+			std::cout << "Contact not added" << std::endl;
+			wait_for_enter();
+			return (false);
+		}
+		else
+		{
+			(t_contact.*func)(input);
+			break;
+		}
+	}
+	return (true);
 }
 
 void	PhoneBook::display_contact_table(void)
