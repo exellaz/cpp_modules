@@ -6,7 +6,7 @@
 #    By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/09 16:06:48 by kkhai-ki          #+#    #+#              #
-#    Updated: 2024/11/08 15:41:04 by kkhai-ki         ###   ########.fr        #
+#    Updated: 2024/11/14 14:37:32 by kkhai-ki         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,8 +22,9 @@ NAME = phonebook
 CC = g++
 CFLAGS = -Wall -Wextra -Werror -I. -std=c++98 -pedantic -g3
 
-SRC =	PhoneBook.cpp	\
-		Contact.cpp		\
+SRC =	PhoneBook.cpp		\
+		Contact.cpp			\
+		PhoneBookUtils.cpp	\
 		main.cpp
 
 OBJ = $(SRC:.cpp=.o)
