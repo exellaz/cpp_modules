@@ -6,7 +6,7 @@
 /*   By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 16:11:19 by kkhai-ki          #+#    #+#             */
-/*   Updated: 2024/11/15 16:58:39 by kkhai-ki         ###   ########.fr       */
+/*   Updated: 2024/11/15 17:02:49 by kkhai-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,20 @@ void	Account::_displayTimestamp( void ) {
 	struct tm	*tm = localtime(&now);
 
 	std::cout << std::put_time(tm, "[%Y%m%d_%H%M%S] ");
+}
+
+void	Account::displayAccountsInfos( void ) {
+	_displayTimestamp();
+	std::cout << "accounts:" << getNbAccounts() << ";";
+	std::cout << "total:" << getTotalAmount() << ";";
+	std::cout << "deposits:" << getNbDeposits() << ";";
+	std::cout << "withdrawals:" << getNbWithdrawals() << ";" << std::endl;
+}
+
+void	Account::displayStatus( void ) const {
+	_displayTimestamp();
+	std::cout << "index:" << this->_accountIndex << ";";
+	std::cout << "amount:" << getTotalAmount() << ";";
+	std::cout << "deposits:" << getNbDeposits() << ";";
+	std::cout << "withdrawals:" << getNbWithdrawals() << ";" << std::endl;
 }
