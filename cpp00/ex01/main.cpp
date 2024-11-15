@@ -6,44 +6,36 @@
 /*   By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 18:50:52 by kkhai-ki          #+#    #+#             */
-/*   Updated: 2024/11/14 18:34:34 by kkhai-ki         ###   ########.fr       */
+/*   Updated: 2024/11/15 13:50:22 by kkhai-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
+#include <unistd.h>
 
 int	main(void)
 {
 	std::string	input;
 	PhoneBook phonebook;
 
-	system("clear");
-	std::cout << "Welcome to PhoneBook" << std::endl;
-	wait_for_enter();
-	system("clear");
+	display_welcome();
 	while (1)
 	{
-		display_menu();
-		std::getline(std::cin, input);
 		system("clear");
-		if (std::cin.eof())
-			break ;
+		display_menu_and_prompt(input);
 		if (input.empty())
 			continue ;
 		else if (input == "EXIT")
-			break ;
+			return (system("clear"), 0);
 		else if (input == "ADD")
 			phonebook.add_contact();
 		else if (input == "SEARCH")
-		{
-			// phonebook.display_contact_table();
 			phonebook.search_contact();
-		}
 		else
 		{
-			std::cout << "Invalid input." << std::endl;
+			std::cout << "Error: Please try a valid command." << std::endl;
+			sleep(2);
 		}
-		// std::cout << input << std::endl;
 	}
 	return (0);
 }
