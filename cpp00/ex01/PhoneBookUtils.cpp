@@ -6,12 +6,10 @@
 /*   By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 14:27:42 by kkhai-ki          #+#    #+#             */
-/*   Updated: 2024/11/15 13:49:55 by kkhai-ki         ###   ########.fr       */
+/*   Updated: 2024/11/17 12:08:51 by kkhai-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cstdlib>
-#include <iostream>
 #include "PhoneBookUtils.hpp"
 
 void	display_welcome(void)

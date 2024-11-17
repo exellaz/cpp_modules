@@ -6,7 +6,7 @@
 /*   By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 15:44:09 by kkhai-ki          #+#    #+#             */
-/*   Updated: 2024/11/15 13:50:03 by kkhai-ki         ###   ########.fr       */
+/*   Updated: 2024/11/17 12:10:42 by kkhai-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,6 @@
 # include "Contact.hpp"
 # include "PhoneBookUtils.hpp"
 # include <iomanip>
-# include <cstdlib>
-
-# define MAX_CELL_WIDTH 20
 
 class PhoneBook
 {
