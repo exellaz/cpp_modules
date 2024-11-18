@@ -6,7 +6,7 @@
 #    By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/18 12:45:16 by kkhai-ki          #+#    #+#              #
-#    Updated: 2024/11/18 13:04:40 by kkhai-ki         ###   ########.fr        #
+#    Updated: 2024/11/18 13:21:16 by kkhai-ki         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,11 +20,12 @@ ORANGE = \033[0;38;5;166m
 NAME = zombie
 
 CC = g++
-CFLAGS = -Wall -Wextra -Werror -I. -std=c++98 -pedantic -g3
+CFLAGS = -Wall -Wextra -I. -std=c++98 -pedantic -g3
 
-SRC =	main.cpp	\
-		Zombie.cpp	\
-		newZombie.cpp
+SRC =	main.cpp		\
+		Zombie.cpp		\
+		newZombie.cpp	\
+		randomChump.cpp
 
 
 OBJ = $(SRC:.cpp=.o)
