@@ -31,6 +31,9 @@
 *.out
 *.app
 
+# VScode Config
+**/.vscode
+
 # Program Executables
 megaphone
 phonebook
