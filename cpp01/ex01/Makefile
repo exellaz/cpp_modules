@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/11/18 12:45:16 by kkhai-ki          #+#    #+#              #
-#    Updated: 2024/11/18 13:28:27 by kkhai-ki         ###   ########.fr        #
+#    Created: 2024/11/18 13:27:54 by kkhai-ki          #+#    #+#              #
+#    Updated: 2024/11/18 13:53:30 by kkhai-ki         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,16 +17,14 @@ RED = \033[0;31m
 RESET = \033[0m
 ORANGE = \033[0;38;5;166m
 
-NAME = zombie
+NAME = zombieHorde
 
 CC = g++
 CFLAGS = -Wall -Wextra -Werror -I. -std=c++98 -pedantic -g3
 
 SRC =	main.cpp		\
 		Zombie.cpp		\
-		newZombie.cpp	\
-		randomChump.cpp
-
+		zombieHorde.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
@@ -47,3 +45,4 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
+
