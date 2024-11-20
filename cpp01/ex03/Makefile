@@ -6,7 +6,7 @@
 #    By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/20 12:43:34 by kkhai-ki          #+#    #+#              #
-#    Updated: 2024/11/20 13:39:14 by kkhai-ki         ###   ########.fr        #
+#    Updated: 2024/11/20 14:53:04 by kkhai-ki         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,8 @@ CFLAGS = -Wall -Wextra -Werror -I. -std=c++98 -pedantic -g3
 
 SRC =	main.cpp	\
 		Weapon.cpp	\
-		HumanA.cpp
+		HumanA.cpp	\
+		HumanB.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
