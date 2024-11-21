@@ -6,7 +6,7 @@
 /*   By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 15:11:38 by kkhai-ki          #+#    #+#             */
-/*   Updated: 2024/11/20 22:35:30 by kkhai-ki         ###   ########.fr       */
+/*   Updated: 2024/11/21 11:42:56 by kkhai-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,12 @@ int	main(int ac, char *av[])
 	std::string		content;
 	std::string		line;
 	std::ifstream	file_read(filename.c_str());
-	std::ofstream	file_output(filename.append(".replace").c_str());
 	if (file_read.is_open() == false)
 	{
 		std::cout << "Error: Invalid file" << std::endl;
 		return (1);
 	}
+	std::ofstream file_output(filename.append(".replace").c_str());
 	while (std::getline(file_read, line))
 		content.append(line).append("\n");
 	content = replace_str(content, toReplace, replaceWith);
