@@ -6,7 +6,7 @@
 /*   By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 15:11:38 by kkhai-ki          #+#    #+#             */
-/*   Updated: 2024/11/21 11:42:56 by kkhai-ki         ###   ########.fr       */
+/*   Updated: 2024/11/21 11:50:42 by kkhai-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ std::string	replace_str(std::string initial, std::string toReplace, std::string 
 	size_t		found;
 	std::string	result;
 
+	if (toReplace.empty() == true)
+		return (initial);
 	found = initial.find(toReplace);
 	while (found != std::string::npos)
 	{
