@@ -6,7 +6,7 @@
 #    By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/24 15:17:15 by kkhai-ki          #+#    #+#              #
-#    Updated: 2024/11/24 16:59:47 by kkhai-ki         ###   ########.fr        #
+#    Updated: 2024/11/24 21:22:33 by kkhai-ki         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,13 +17,15 @@ RED = \033[0;31m
 RESET = \033[0m
 ORANGE = \033[0;38;5;166m
 
-NAME = bsp_main
+NAME = bsp_test
 
 CC = clang++
 CFLAGS = -Wall -Wextra -Werror -I. -std=c++98 -pedantic -g3
 
 SRC =	main.cpp	\
-		Fixed.cpp
+		Fixed.cpp	\
+		Point.cpp	\
+		bsp.cpp
 
 OBJ = $(SRC:.cpp=.o)
 

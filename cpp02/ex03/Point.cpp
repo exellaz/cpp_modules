@@ -6,7 +6,7 @@
 /*   By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 17:03:27 by kkhai-ki          #+#    #+#             */
-/*   Updated: 2024/11/24 17:17:55 by kkhai-ki         ###   ########.fr       */
+/*   Updated: 2024/11/24 17:48:59 by kkhai-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,13 @@ Point::Point(const float x, const float y)
 
 }
 
+Point::Point(Fixed x, Fixed y)
+	: _x(x),
+	_y(y)
+{
+
+}
+
 Point::Point(const Point &other)
 	: _x(other.getX()),
 	_y(other.getY())
@@ -40,6 +47,7 @@ Point::Point(const Point &other)
 
 Point	&Point::operator=(const Point &other)
 {
+	(void)other;
 	return (*this);
 }
 
