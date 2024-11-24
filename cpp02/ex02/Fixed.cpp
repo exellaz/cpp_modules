@@ -6,7 +6,7 @@
 /*   By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 21:40:59 by kkhai-ki          #+#    #+#             */
-/*   Updated: 2024/11/24 16:15:14 by kkhai-ki         ###   ########.fr       */
+/*   Updated: 2024/11/24 16:25:56 by kkhai-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,6 +148,34 @@ Fixed	Fixed::operator--(int)
 	Fixed	temp(*this);
 	--(*this);
 	return (temp);
+}
+
+Fixed	&Fixed::min(Fixed &a, Fixed &b)
+{
+	if (a.toFloat() < b.toFloat())
+		return (a);
+	return (b);
+}
+
+Fixed	&Fixed::max(Fixed &a, Fixed &b)
+{
+	if (a.toFloat() > b.toFloat())
+		return (a);
+	return (b);
+}
+
+const Fixed	&Fixed::min(const Fixed &a, const Fixed &b)
+{
+	if (a.toFloat() < b.toFloat())
+		return (a);
+	return (b);
+}
+
+const Fixed	&Fixed::max(const Fixed &a, const Fixed &b)
+{
+	if (a.toFloat() > b.toFloat())
+		return (a);
+	return (b);
 }
 
 std::ostream	&operator<<(std::ostream &stream, const Fixed &f)
