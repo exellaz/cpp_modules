@@ -6,7 +6,7 @@
 /*   By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 21:40:59 by kkhai-ki          #+#    #+#             */
-/*   Updated: 2024/11/24 15:48:42 by kkhai-ki         ###   ########.fr       */
+/*   Updated: 2024/11/24 16:15:14 by kkhai-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,32 @@ Fixed	Fixed::operator/(const Fixed &f) const
 {
 	Fixed	result(this->toFloat() / f.toFloat());
 	return (result);
+}
+
+Fixed	&Fixed::operator++(void)
+{
+	this->_raw_bits++;
+	return (*this);
+}
+
+Fixed	Fixed::operator++(int)
+{
+	Fixed	temp(*this);
+	++(*this);
+	return (temp);
+}
+
+Fixed	&Fixed::operator--(void)
+{
+	this->_raw_bits--;
+	return (*this);
+}
+
+Fixed	Fixed::operator--(int)
+{
+	Fixed	temp(*this);
+	--(*this);
+	return (temp);
 }
 
 std::ostream	&operator<<(std::ostream &stream, const Fixed &f)
