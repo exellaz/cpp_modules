@@ -6,7 +6,7 @@
 #    By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/25 12:04:48 by kkhai-ki          #+#    #+#              #
-#    Updated: 2024/11/25 12:35:40 by kkhai-ki         ###   ########.fr        #
+#    Updated: 2024/11/26 11:57:31 by kkhai-ki         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,13 +17,14 @@ RED = \033[0;31m
 RESET = \033[0m
 ORANGE = \033[0;38;5;166m
 
-NAME = claptrap
+NAME = scavtrap
 
 CC = g++
 CFLAGS = -Wall -Wextra -Werror -I. -std=c++98 -pedantic -g3
 
-SRC =	main.cpp	\
-		ClapTrap.cpp
+SRC =	main.cpp		\
+		ClapTrap.cpp	\
+		ScavTrap.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
