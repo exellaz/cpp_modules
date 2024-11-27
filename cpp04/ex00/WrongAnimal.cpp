@@ -1,48 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.cpp                                         :+:      :+:    :+:   */
+/*   WrongAnimal.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/26 14:52:40 by kkhai-ki          #+#    #+#             */
-/*   Updated: 2024/11/27 22:15:24 by kkhai-ki         ###   ########.fr       */
+/*   Created: 2024/11/27 21:57:50 by kkhai-ki          #+#    #+#             */
+/*   Updated: 2024/11/27 21:57:59 by kkhai-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Animal.hpp"
+#include "WrongAnimal.hpp"
 
-Animal::Animal(void)
+WrongAnimal::WrongAnimal(void)
 {
-	std::cout << "Default Animal constructor called" << std::endl;
-	this->_type = "Unknown";
+	std::cout << "Default WrongAnimal constructor called" << std::endl;
 }
 
-Animal::~Animal(void)
+WrongAnimal::~WrongAnimal(void)
 {
-	std::cout << "Animal destructor called" << std::endl;
+	std::cout << "WrongAnimal destructor called" << std::endl;
 }
 
-Animal::Animal(Animal &src)
+WrongAnimal::WrongAnimal(WrongAnimal &src)
 {
-	std::cout << "Animal copy constructor called" << std::endl;
+	std::cout << "WrongAnimal copy constructor called" << std::endl;
 	*this = src;
 }
 
-Animal	&Animal::operator=(Animal &src)
+WrongAnimal	&WrongAnimal::operator=(WrongAnimal &src)
 {
-	std::cout << "Animal copy assignment operator called" << std::endl;
+	std::cout << "WrongAnimal copy assignment operator called" << std::endl;
 	if (this != &src)
 		this->_type = src.getType();
 	return (*this);
 }
 
-std::string	Animal::getType(void) const
+std::string	WrongAnimal::getType(void) const
 {
 	return (this->_type);
 }
 
-void	Animal::makeSound(void) const
+void	WrongAnimal::makeSound(void) const
 {
 	std::cout << this->_type << ": *unintelligible sounds*" << std::endl;
 }

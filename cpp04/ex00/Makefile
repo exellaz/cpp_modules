@@ -6,7 +6,7 @@
 #    By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/26 14:46:29 by kkhai-ki          #+#    #+#              #
-#    Updated: 2024/11/26 14:49:34 by kkhai-ki         ###   ########.fr        #
+#    Updated: 2024/11/27 22:06:01 by kkhai-ki         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,12 @@ NAME = animal
 CC = g++
 CFLAGS = -Wall -Wextra -Werror -I. -std=c++98 -pedantic -g3
 
-SRC =	main.cpp
+SRC =	main.cpp		\
+		Animal.cpp		\
+		WrongAnimal.cpp	\
+		Dog.cpp			\
+		Cat.cpp			\
+		WrongCat.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
