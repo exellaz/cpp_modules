@@ -6,7 +6,7 @@
 /*   By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 14:50:17 by kkhai-ki          #+#    #+#             */
-/*   Updated: 2024/11/26 14:52:59 by kkhai-ki         ###   ########.fr       */
+/*   Updated: 2024/11/27 21:46:52 by kkhai-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,9 @@ class Animal
 		Animal(void);
 		~Animal(void);
 		Animal(Animal &src);
-		Animal	&operator=(Animal &src);
+		Animal		&operator=(Animal &src);
+		std::string	getType(void) const;
+		void		makeSound(void) const;
 };
 
 #endif
