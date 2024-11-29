@@ -6,7 +6,7 @@
 /*   By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 22:01:55 by kkhai-ki          #+#    #+#             */
-/*   Updated: 2024/11/27 22:04:21 by kkhai-ki         ###   ########.fr       */
+/*   Updated: 2024/11/29 12:02:33 by kkhai-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ class WrongCat : public WrongAnimal
 		~WrongCat(void);
 		WrongCat(WrongCat &src);
 		WrongCat		&operator=(WrongCat &src);
-		void		makeSound(void) const;
+		virtual void	makeSound(void) const;
 };
 
 #endif

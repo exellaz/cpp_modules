@@ -6,7 +6,7 @@
 /*   By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 21:57:07 by kkhai-ki          #+#    #+#             */
-/*   Updated: 2024/11/27 21:58:41 by kkhai-ki         ###   ########.fr       */
+/*   Updated: 2024/11/29 12:03:05 by kkhai-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ class WrongAnimal
 
 	public:
 		WrongAnimal(void);
-		~WrongAnimal(void);
+		virtual ~WrongAnimal(void);
 		WrongAnimal(WrongAnimal &src);
 		WrongAnimal		&operator=(WrongAnimal &src);
-		std::string	getType(void) const;
-		void		makeSound(void) const;
+		std::string		getType(void) const;
+		virtual void	makeSound(void) const;
 };
 
 #endif
