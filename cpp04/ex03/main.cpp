@@ -6,17 +6,19 @@
 /*   By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 13:48:22 by kkhai-ki          #+#    #+#             */
-/*   Updated: 2024/12/03 15:11:26 by kkhai-ki         ###   ########.fr       */
+/*   Updated: 2024/12/03 15:15:47 by kkhai-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "AMateria.hpp"
 #include "Character.hpp"
 #include "Ice.hpp"
+#include "Cure.hpp"
 
 int	main(void)
 {
 	Ice			*ice = new Ice();
+	Cure		*cure = new Cure();
 	Ice			*none = NULL;
 	Character	Player1("Guy");
 	Character	Player2("Chicken");
@@ -29,4 +31,6 @@ int	main(void)
 	Player1.use(0, Player2);
 	Player1.equip(ice);
 	Player1.use(0, Player2);
+	Player2.equip(cure);
+	Player2.use(0, Player1);
 }
