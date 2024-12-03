@@ -6,7 +6,7 @@
 #    By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/03 13:27:44 by kkhai-ki          #+#    #+#              #
-#    Updated: 2024/12/03 15:15:56 by kkhai-ki         ###   ########.fr        #
+#    Updated: 2024/12/03 15:56:36 by kkhai-ki         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,13 +20,14 @@ ORANGE = \033[0;38;5;166m
 NAME = materia
 
 CC = g++
-CFLAGS = -Wall -Wextra -Werror -Wshadow -I. -std=c++98 -pedantic -g3 #-fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -Wshadow -I. -std=c++98 -pedantic -g3 -fsanitize=address
 
-SRC =	main.cpp		\
-		AMateria.cpp	\
-		Character.cpp	\
-		Ice.cpp			\
-		Cure.cpp
+SRC =	main.cpp			\
+		AMateria.cpp		\
+		Character.cpp		\
+		Ice.cpp				\
+		Cure.cpp			\
+		MateriaSource.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
