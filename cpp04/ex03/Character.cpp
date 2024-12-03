@@ -6,12 +6,11 @@
 /*   By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 13:50:16 by kkhai-ki          #+#    #+#             */
-/*   Updated: 2024/12/03 14:44:06 by kkhai-ki         ###   ########.fr       */
+/*   Updated: 2024/12/03 15:09:29 by kkhai-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Character.hpp"
-#include <iostream>
 
 Character::Character(std::string name)
 	: _name(name)
@@ -80,7 +79,7 @@ void	Character::equip(AMateria *m)
 		if (this->_inventory[i] == NULL)
 		{
 			this->_inventory[i] = m;
-			std::cout << this->_name << ": " << m->getType() << " equipped at slot " << i << std::endl;
+			std::cout << this->_name << ": " << m->getType() << " materia equipped at slot " << i << std::endl;
 			return ;
 		}
 	}
@@ -96,10 +95,10 @@ void	Character::unequip(int idx)
 	}
 	if (this->_inventory[idx] == NULL)
 	{
-		std::cout << this->_name << ": Nothing at slot " << idx << " to unequip";
+		std::cout << this->_name << ": Nothing at slot " << idx << " to unequip" << std::endl;
 		return ;
 	}
-	std::cout << this->_name << " unequipped " << this->_inventory[idx]->getType()
+	std::cout << this->_name << ": unequipped " << this->_inventory[idx]->getType()
 	<< " materia from slot " << idx << std::endl;
 	this->_inventory[idx] = NULL;
 	return ;
@@ -114,7 +113,7 @@ void	Character::use(int idx, ICharacter &target)
 	}
 	if (this->_inventory[idx] == NULL)
 	{
-		std::cout << this->_name << ": Nothing at slot " << idx << " to use";
+		std::cout << this->_name << ": Nothing at slot " << idx << " to use" << std::endl;
 		return ;
 	}
 	std::cout << this->_name << ": ";

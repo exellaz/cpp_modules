@@ -6,7 +6,7 @@
 /*   By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 13:50:18 by kkhai-ki          #+#    #+#             */
-/*   Updated: 2024/12/03 14:48:59 by kkhai-ki         ###   ########.fr       */
+/*   Updated: 2024/12/03 14:59:29 by kkhai-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 
 # include "AMateria.hpp"
 # include "ICharacter.hpp"
+# include <iostream>
 
-class Character
+class Character : public ICharacter
 {
 	private:
 		std::string			_name;

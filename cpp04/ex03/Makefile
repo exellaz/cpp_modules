@@ -6,7 +6,7 @@
 #    By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/03 13:27:44 by kkhai-ki          #+#    #+#              #
-#    Updated: 2024/12/03 14:34:02 by kkhai-ki         ###   ########.fr        #
+#    Updated: 2024/12/03 15:01:08 by kkhai-ki         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,8 @@ CFLAGS = -Wall -Wextra -Werror -Wshadow -I. -std=c++98 -pedantic -g3 #-fsanitize
 
 SRC =	main.cpp		\
 		AMateria.cpp	\
-		Character.cpp
+		Character.cpp	\
+		Ice.cpp
 
 OBJ = $(SRC:.cpp=.o)
 

@@ -6,7 +6,7 @@
 /*   By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 13:33:59 by kkhai-ki          #+#    #+#             */
-/*   Updated: 2024/12/03 13:48:31 by kkhai-ki         ###   ########.fr       */
+/*   Updated: 2024/12/03 15:03:10 by kkhai-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,9 @@ AMateria	&AMateria::operator=(AMateria const &src)
 const std::string	&AMateria::getType(void) const
 {
 	return (this->_type);
+}
+
+void	AMateria::use(ICharacter &target)
+{
+	(void)target;
 }

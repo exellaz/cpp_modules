@@ -6,13 +6,15 @@
 /*   By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 13:28:40 by kkhai-ki          #+#    #+#             */
-/*   Updated: 2024/12/03 14:44:50 by kkhai-ki         ###   ########.fr       */
+/*   Updated: 2024/12/03 15:01:59 by kkhai-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef AMATERIA_HPP
 # define AMATERIA_HPP
 
+# include "ICharacter.hpp"
+# include <iostream>
 # include <string>
 
 class AMateria

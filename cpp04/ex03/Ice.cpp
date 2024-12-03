@@ -1,32 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Ice.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/03 13:48:22 by kkhai-ki          #+#    #+#             */
-/*   Updated: 2024/12/03 15:11:26 by kkhai-ki         ###   ########.fr       */
+/*   Created: 2024/12/03 14:51:39 by kkhai-ki          #+#    #+#             */
+/*   Updated: 2024/12/03 15:08:29 by kkhai-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "AMateria.hpp"
-#include "Character.hpp"
 #include "Ice.hpp"
 
-int	main(void)
+Ice::Ice(void) : AMateria("ice")
 {
-	Ice			*ice = new Ice();
-	Ice			*none = NULL;
-	Character	Player1("Guy");
-	Character	Player2("Chicken");
 
-	Player1.equip(ice);
-	Player1.equip(none);
-	Player1.unequip(1);
-	Player1.use(0, Player2);
-	Player1.unequip(0);
-	Player1.use(0, Player2);
-	Player1.equip(ice);
-	Player1.use(0, Player2);
+}
+
+Ice::~Ice(void)
+{
+
+}
+
+Ice::Ice(Ice &src) : AMateria("ice")
+{
+	*this = src;
+}
+
+Ice	&Ice::operator=(Ice &src)
+{
+	if (this != &src)
+		this->_type = src.getType();
+	return (*this);
+}
+
+AMateria	*Ice::clone(void) const
+{
+	return (new Ice());
+}
+
+void	Ice::use(ICharacter &target)
+{
+	std::cout << "* shoots an ice bolt at " << target.getName() << " *" << std::endl;
 }

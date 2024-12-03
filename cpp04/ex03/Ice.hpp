@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Ice.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/03 13:48:22 by kkhai-ki          #+#    #+#             */
-/*   Updated: 2024/12/03 15:11:26 by kkhai-ki         ###   ########.fr       */
+/*   Created: 2024/12/03 14:51:41 by kkhai-ki          #+#    #+#             */
+/*   Updated: 2024/12/03 14:59:17 by kkhai-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "AMateria.hpp"
-#include "Character.hpp"
-#include "Ice.hpp"
+#ifndef ICE_HPP
+# define ICE_HPP
 
-int	main(void)
+# include "AMateria.hpp"
+# include "ICharacter.hpp"
+# include <iostream>
+
+class Ice : public AMateria
 {
-	Ice			*ice = new Ice();
-	Ice			*none = NULL;
-	Character	Player1("Guy");
-	Character	Player2("Chicken");
+	public:
+		Ice(void);
+		~Ice(void);
+		Ice(Ice &src);
+		Ice			&operator=(Ice &src);
+		AMateria	*clone(void) const;
+		void		use(ICharacter &target);
+};
 
-	Player1.equip(ice);
-	Player1.equip(none);
-	Player1.unequip(1);
-	Player1.use(0, Player2);
-	Player1.unequip(0);
-	Player1.use(0, Player2);
-	Player1.equip(ice);
-	Player1.use(0, Player2);
-}
+#endif
