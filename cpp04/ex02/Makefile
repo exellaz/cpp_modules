@@ -6,7 +6,7 @@
 #    By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/26 14:46:29 by kkhai-ki          #+#    #+#              #
-#    Updated: 2024/12/03 13:24:03 by kkhai-ki         ###   ########.fr        #
+#    Updated: 2024/12/03 13:23:40 by kkhai-ki         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ CC = g++
 CFLAGS = -Wall -Wextra -Werror -Wshadow -I. -std=c++98 -pedantic -g3 #-fsanitize=address
 
 SRC =	main.cpp		\
-		Animal.cpp		\
+		AAnimal.cpp		\
 		WrongAnimal.cpp	\
 		Dog.cpp			\
 		Cat.cpp			\
