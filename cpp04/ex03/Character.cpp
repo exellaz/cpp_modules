@@ -6,7 +6,7 @@
 /*   By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 13:50:16 by kkhai-ki          #+#    #+#             */
-/*   Updated: 2024/12/03 15:09:29 by kkhai-ki         ###   ########.fr       */
+/*   Updated: 2024/12/04 15:08:38 by kkhai-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ void	Character::unequip(int idx)
 		std::cout << this->_name << ": Nothing at slot " << idx << " to unequip" << std::endl;
 		return ;
 	}
-	std::cout << this->_name << ": unequipped " << this->_inventory[idx]->getType()
+	std::cout << this->_name << ": Unequipped " << this->_inventory[idx]->getType()
 	<< " materia from slot " << idx << std::endl;
 	this->_inventory[idx] = NULL;
 	return ;

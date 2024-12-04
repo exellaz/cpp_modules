@@ -6,7 +6,7 @@
 /*   By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 15:18:00 by kkhai-ki          #+#    #+#             */
-/*   Updated: 2024/12/03 15:52:39 by kkhai-ki         ###   ########.fr       */
+/*   Updated: 2024/12/04 15:51:53 by kkhai-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ AMateria	*MateriaSource::createMateria(const std::string &type)
 {
 	for (int i = 0; i < _recipeSlots; i++)
 	{
-		if (this->_recipes != NULL && this->_recipes[i]->getType() == type)
+		if (this->_recipes[i] != NULL && this->_recipes[i]->getType() == type)
 		{
 			std::cout << "MateriaSource: Creating " << type << " materia" << std::endl;
 			return (this->_recipes[i]->clone());
