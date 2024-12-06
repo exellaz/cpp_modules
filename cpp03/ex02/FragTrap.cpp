@@ -6,7 +6,7 @@
 /*   By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 17:57:40 by kkhai-ki          #+#    #+#             */
-/*   Updated: 2024/11/26 12:27:42 by kkhai-ki         ###   ########.fr       */
+/*   Updated: 2024/12/06 14:11:26 by kkhai-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ FragTrap	&FragTrap::operator=(FragTrap &src)
 	{
 		this->_name = src.getName();
 		this->_hitPoints = src.getHitPoints();
-		this->_energyPoints = src.getHitPoints();
+		this->_energyPoints = src.getEnergyPoints();
 		this->_attackDamage = src.getAttackDamage();
 	}
 	std::cout << "FragTrap copy assignment operator called" << std::endl;
