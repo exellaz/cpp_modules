@@ -6,7 +6,7 @@
 /*   By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 13:28:40 by kkhai-ki          #+#    #+#             */
-/*   Updated: 2024/12/03 15:01:59 by kkhai-ki         ###   ########.fr       */
+/*   Updated: 2024/12/07 12:37:08 by kkhai-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ class AMateria
 		AMateria			&operator=(AMateria const &src);
 		const std::string	&getType(void) const;
 		virtual	AMateria	*clone() const = 0;
-		virtual void		use(ICharacter &target);
+		virtual void		use(ICharacter &target) = 0;
 };
 
 #endif
