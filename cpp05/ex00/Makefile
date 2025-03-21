@@ -6,7 +6,7 @@
 #    By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/17 08:39:44 by kkhai-ki          #+#    #+#              #
-#    Updated: 2025/03/17 10:15:11 by kkhai-ki         ###   ########.fr        #
+#    Updated: 2025/03/18 13:50:50 by kkhai-ki         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,10 @@ $(NAME): $(OBJ)
 
 %.o: %.cpp
 	$(CC) $(CFLAGS) -c $< -o $@
+
+debug: CFLAGS += -D DEBUG=1
+debug: fclean $(OBJ)
+	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 
 clean:
 	rm -f $(OBJ)
