@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+#/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
@@ -6,7 +6,7 @@
 /*   By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 08:42:15 by kkhai-ki          #+#    #+#             */
-/*   Updated: 2025/03/22 16:46:18 by kkhai-ki         ###   ########.fr       */
+/*   Updated: 2025/03/18 15:15:30 by kkhai-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,10 @@
 
 # include <iostream>
 # include <stdexcept>
+# include "Form.hpp"
 
 class Bureaucrat
-{cpp05/ex00/Bureaucrat.cpp cpp05/ex00/Bureaucrat.hpp cpp05/ex00/main.cpp cpp05/ex00/Makefile
+{
 	public:
 		Bureaucrat();
 		~Bureaucrat();
@@ -29,8 +30,10 @@ class Bureaucrat
 		Bureaucrat(const Bureaucrat &src);
 		Bureaucrat &operator=(const Bureaucrat &src);
 
-		void				incrementGrade();
-		void				decrementGrade();
+		void	incrementGrade();
+		void	decrementGrade();
+		void	signForm(Form &form);
+
 		const std::string	&getName() const;
 		int					getGrade() const;
 

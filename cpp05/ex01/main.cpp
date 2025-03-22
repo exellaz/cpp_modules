@@ -6,7 +6,7 @@
 /*   By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 08:41:54 by kkhai-ki          #+#    #+#             */
-/*   Updated: 2025/03/22 16:45:56 by kkhai-ki         ###   ########.fr       */
+/*   Updated: 2025/03/22 16:45:39 by kkhai-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@
 		} \
 	}
 
-	run_tests();
+void	run_tests();
 
 int	main()
 {
@@ -159,7 +159,7 @@ bool	test_Bureaucrat_InsertionOperator()
 
 bool	test_Bureaucrat_GradeTooHighException()
 {
-	const std::string	expectedException = "Bureaucrat::GradeTooHighException";
+	const std::string	expectedExeception = "Bureaucrat::GradeTooHighException";
 	std::ostringstream	errors;
 	std::string			exception_caught;
 	bool				result = true;
@@ -172,14 +172,14 @@ bool	test_Bureaucrat_GradeTooHighException()
 	{
 		exception_caught = "Bureaucrat::GradeTooHighException";
 	}
-	CHECK_EXCEPTION(expectedException, exception_caught);
+	CHECK_EXCEPTION(expectedExeception, exception_caught);
 	REPORT(result, "GradeTooHigh exception test");
 	return (result);
 }
 
 bool	test_Bureaucrat_GradeTooLowException()
 {
-	const std::string	expectedException = "Bureaucrat::GradeTooLowException";
+	const std::string	expectedExeception = "Bureaucrat::GradeTooLowException";
 	std::ostringstream	errors;
 	std::string			exception_caught;
 	bool				result = true;
@@ -192,7 +192,7 @@ bool	test_Bureaucrat_GradeTooLowException()
 	{
 		exception_caught = "Bureaucrat::GradeTooLowException";
 	}
-	CHECK_EXCEPTION(expectedException, exception_caught);
+	CHECK_EXCEPTION(expectedExeception, exception_caught);
 	REPORT(result, "GradeTooLow exception test");
 	return (result);
 }
@@ -212,7 +212,7 @@ bool	test_Bureaucrat_IncrementGrade()
 		CHECK(expectedGrade, grade);
 	}
 	{
-		const std::string	expectedException = "Bureaucrat::GradeTooHighException";
+		const std::string	expectedExeception = "Bureaucrat::GradeTooHighException";
 		Bureaucrat			c("Nick", 1);
 		std::string			exception_caught;
 		try
@@ -223,7 +223,7 @@ bool	test_Bureaucrat_IncrementGrade()
 		{
 			exception_caught = "Bureaucrat::GradeTooHighException";
 		}
-		CHECK_EXCEPTION(expectedException, exception_caught);
+		CHECK_EXCEPTION(expectedExeception, exception_caught);
 	}
 	REPORT(result, "IncrementGrade test");
 	return (result);
@@ -244,7 +244,7 @@ bool	test_Bureaucrat_DecrementGrade()
 		CHECK(expectedGrade, grade);
 	}
 	{
-		const std::string	expectedException = "Bureaucrat::GradeTooLowException";
+		const std::string	expectedExeception = "Bureaucrat::GradeTooLowException";
 		std::string			exception_caught;
 		Bureaucrat			c("Cat", 150);
 		try
@@ -255,7 +255,7 @@ bool	test_Bureaucrat_DecrementGrade()
 		{
 			exception_caught = "Bureaucrat::GradeTooLowException";
 		}
-		CHECK_EXCEPTION(expectedException, exception_caught);
+		CHECK_EXCEPTION(expectedExeception, exception_caught);
 	}
 	REPORT(result, "DecrementGrade test");
 	return (result);
@@ -278,10 +278,10 @@ void	run_tests()
 		test_Bureaucrat_DecrementGrade,
 	};
 
-	int	numTests = sizeof(tests) / sizeof(tests[0]);
+	int	num_tests = sizeof(tests) / sizeof(tests[0]);
 
-	std::cout << "Running " << numTests << " tests...\n\n";
-	for (int i = 0; i < numTests; i++)
+	std::cout << "Running " << num_tests << " tests...\n\n";
+	for (int i = 0; i < num_tests; i++)
 	{
 		if (tests[i]())
 			passed++;
@@ -289,6 +289,6 @@ void	run_tests()
 			failed++;
 		std::cout << "-------------------------------------------" << std::endl;
 	}
-	std::cout << "\nTests passed: " << passed << " / " << numTests << std::endl;
-	std::cout << "Tests failed: " << failed << " / " << numTests << std::endl;
+	std::cout << "\nTests passed: " << passed << " / " << num_tests << std::endl;
+	std::cout << "Tests failed: " << failed << " / " << num_tests << std::endl;
 }
