@@ -6,7 +6,7 @@
 /*   By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 08:42:15 by kkhai-ki          #+#    #+#             */
-/*   Updated: 2025/03/18 15:15:30 by kkhai-ki         ###   ########.fr       */
+/*   Updated: 2025/03/22 15:51:36 by kkhai-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,8 @@
 # include <iostream>
 # include <stdexcept>
 
-class Bureaucrat {
-	private:
-		const std::string	_name;
-		int					_grade;
-
+class Bureaucrat
+{
 	public:
 		Bureaucrat(void);
 		~Bureaucrat(void);
@@ -47,6 +44,10 @@ class Bureaucrat {
 			public:
 				virtual const char	*what() const throw();
 		};
+
+	private:
+		const std::string	_name;
+		int					_grade;
 };
 
 std::ostream	&operator<<(std::ostream &stream, const Bureaucrat &src);
