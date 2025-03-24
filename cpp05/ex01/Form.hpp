@@ -6,7 +6,7 @@
 /*   By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 15:44:17 by kkhai-ki          #+#    #+#             */
-/*   Updated: 2025/03/24 09:22:25 by kkhai-ki         ###   ########.fr       */
+/*   Updated: 2025/03/24 16:23:13 by kkhai-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,6 @@ class Form
 };
 
 std::ostream	&operator<<(std::ostream &stream, const Form &src);
+void			printMsg(std::string str);
 
 #endif

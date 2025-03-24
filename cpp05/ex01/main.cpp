@@ -6,7 +6,7 @@
 /*   By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 08:41:54 by kkhai-ki          #+#    #+#             */
-/*   Updated: 2025/03/24 11:56:25 by kkhai-ki         ###   ########.fr       */
+/*   Updated: 2025/03/24 15:02:32 by kkhai-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,7 +149,7 @@ bool	test_Form_BeSigned()
 		const bool	expectedStatus = true;
 
 		Form		form("Sign", 20, 5);
-		Bureaucrat	b("HighGrade", 20);
+		Bureaucrat	b("highGrade", 20);
 
 		form.beSigned(b);
 		bool	status = form.getSigned();
@@ -160,7 +160,7 @@ bool	test_Form_BeSigned()
 		const std::string	expectedException = "Form::GradeTooLowException";
 
 		Form		form("cantSign", 50, 5);
-		Bureaucrat	b("LowGrade", 120);
+		Bureaucrat	b("lowGrade", 120);
 
 		std::string	exceptionCaught;
 		try
@@ -170,7 +170,6 @@ bool	test_Form_BeSigned()
 		catch (Form::GradeTooLowException &e)
 		{
 			exceptionCaught = "Form::GradeTooLowException";
-			std::cout << e.what() << "\n";
 		}
 		CHECK_EXCEPTION(expectedException, exceptionCaught);
 	}
@@ -242,12 +241,11 @@ bool	test_Form_GradeTooHighException()
 		std::string	exceptionCaught;
 		try
 		{
-			Form	form("SignTooHigh", 0, 50);
+			Form	form("signTooHigh", 0, 50);
 		}
 		catch (const Form::GradeTooHighException &e)
 		{
 			exceptionCaught = "Form::GradeTooHighException";
-			std::cout << e.what() << "\n";
 		}
 		CHECK_EXCEPTION(expectedException, exceptionCaught);
 	}
@@ -255,12 +253,11 @@ bool	test_Form_GradeTooHighException()
 		std::string	exceptionCaught;
 		try
 		{
-			Form	form("ExecTooHigh", 50, 0);
+			Form	form("execTooHigh", 50, 0);
 		}
 		catch (const Form::GradeTooHighException &e)
 		{
 			exceptionCaught = "Form::GradeTooHighException";
-			std::cout << e.what() << "\n";
 		}
 		CHECK_EXCEPTION(expectedException, exceptionCaught);
 	}
@@ -278,12 +275,11 @@ bool	test_Form_GradeTooLowException()
 		std::string	exceptionCaught;
 		try
 		{
-			Form	form("SignTooLow", 151, 50);
+			Form	form("signTooLow", 151, 50);
 		}
 		catch (const Form::GradeTooLowException &e)
 		{
 			exceptionCaught = "Form::GradeTooLowException";
-			std::cout << e.what() << "\n";
 		}
 		CHECK_EXCEPTION(expectedException, exceptionCaught);
 	}
@@ -291,12 +287,11 @@ bool	test_Form_GradeTooLowException()
 		std::string	exceptionCaught;
 		try
 		{
-			Form	form("ExecTooLow", 50, 151);
+			Form	form("execTooLow", 50, 151);
 		}
 		catch (const Form::GradeTooLowException &e)
 		{
 			exceptionCaught = "Form::GradeTooLowException";
-			std::cout << e.what() << "\n";
 		}
 		CHECK_EXCEPTION(expectedException, exceptionCaught);
 	}
@@ -312,7 +307,7 @@ bool	test_Form_SignForm()
 	{
 		bool	expectedStatus = true;
 
-		Form		form("SignForm", 1, 1);
+		Form		form("signForm", 1, 1);
 		Bureaucrat	b("Fed", 1);
 
 
@@ -327,6 +322,18 @@ bool	test_Form_SignForm()
 		Form		form("SignForm", 1, 1);
 		Bureaucrat	b("Meat", 150);
 
+		b.signForm(form);
+		bool	status = form.getSigned();
+
+		CHECK(expectedStatus, status);
+	}
+		{
+		const bool	expectedStatus = true;
+
+		Form		form("Signed", 150, 150);
+		Bureaucrat	b("Ham", 150);
+
+		b.signForm(form);
 		b.signForm(form);
 		bool	status = form.getSigned();
 

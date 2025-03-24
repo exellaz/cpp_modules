@@ -18,6 +18,7 @@
 # endif
 
 # include <iostream>
+# include <sstream>
 # include <stdexcept>
 
 class Bureaucrat

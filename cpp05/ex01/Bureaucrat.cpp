@@ -6,7 +6,7 @@
 /*   By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 08:42:17 by kkhai-ki          #+#    #+#             */
-/*   Updated: 2025/03/24 11:45:39 by kkhai-ki         ###   ########.fr       */
+/*   Updated: 2025/03/24 16:26:45 by kkhai-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,15 +96,26 @@ void	Bureaucrat::decrementGrade()
 
 void	Bureaucrat::signForm(Form &form)
 {
+	std::ostringstream	strStream;
+
+	if (form.getSigned() == true)
+	{
+		strStream << _name << " couldn't sign " << form.getName() \
+			<< " because it is already signed.\n";
+		printMsg(strStream.str());
+		return ;
+	}
 	try
 	{
 		form.beSigned(*this);
-		std::cout << _name << " signed " << form.getName() << ".\n";
+		strStream << _name << " signed " << form.getName() << ".\n";
+		printMsg(strStream.str());
 	}
 	catch (const Form::GradeTooLowException &e)
 	{
-		std::cout << _name << " couldn't sign " << form.getName() \
-			<< " because grade is too low.\n";
+		strStream << _name << " couldn't sign " << form.getName() \
+			<< " because " << e.what() << "\n";
+		printMsg(strStream.str());
 	}
 }
 

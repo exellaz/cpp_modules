@@ -6,7 +6,7 @@
 /*   By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 15:44:12 by kkhai-ki          #+#    #+#             */
-/*   Updated: 2025/03/24 10:25:00 by kkhai-ki         ###   ########.fr       */
+/*   Updated: 2025/03/24 16:23:01 by kkhai-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,12 @@ Form::Form()
 	_gradeToSign(150),
 	_gradeToExecute(1)
 {
-	if (DEBUG == 1)
-		std::cout << "Form default constructor called\n";
+	printMsg("Form default constructor called\n");
 }
 
 Form::~Form()
 {
-	if (DEBUG == 1)
-		std::cout << "Form destructor called\n";
+	printMsg("Form destructor called\n");
 }
 
 Form::Form(const std::string &name, const int gradeToSign, const int gradeToExecute)
@@ -38,8 +36,7 @@ Form::Form(const std::string &name, const int gradeToSign, const int gradeToExec
 		throw Form::GradeTooHighException();
 	else if (gradeToSign > 150 || gradeToExecute > 150)
 		throw Form::GradeTooLowException();
-	else if (DEBUG == 1)
-		std::cout << "Form parameterized constructor called\n";
+	printMsg("Form parameterized constructor called\n");
 }
 
 Form::Form(const Form &src)
@@ -48,16 +45,14 @@ Form::Form(const Form &src)
 	_gradeToSign(src._gradeToSign),
 	_gradeToExecute(src._gradeToExecute)
 {
-	if (DEBUG == 1)
-		std::cout << "Form copy constructor called\n";
+	printMsg("Form copy constructor called\n");
 }
 
 Form	&Form::operator=(const Form &src)
 {
 	if (this != &src)
 		_signed = src._signed;
-	if (DEBUG == 1)
-		std::cout << "Form copy assignment operator called\n";
+	printMsg("Form copy assignment operator called\n");
 	return (*this);
 }
 
@@ -75,10 +70,10 @@ std::ostream	&operator<<(std::ostream &stream, const Form &src)
 
 void	Form::beSigned(const Bureaucrat &bureaucrat)
 {
-	if (bureaucrat.getGrade() <= _gradeToSign)
-		_signed = true;
-	else
+	if (bureaucrat.getGrade() > _gradeToSign)
 		throw Form::GradeTooLowException();
+	else
+		_signed = true;
 
 }
 
@@ -102,12 +97,18 @@ int	Form::getGradeToExecute() const
 	return (_gradeToExecute);
 }
 
+void	printMsg(std::string str)
+{
+	if (DEBUG == 1)
+		std::cout << str;
+}
+
 const char	*Form::GradeTooHighException::what() const throw()
 {
-	return ("Grade too high");
+	return ("grade is too high");
 }
 
 const char	*Form::GradeTooLowException::what() const throw()
 {
-	return ("Grade too low");
+	return ("grade is too low");
 }
