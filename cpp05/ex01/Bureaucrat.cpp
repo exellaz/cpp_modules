@@ -6,11 +6,12 @@
 /*   By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 08:42:17 by kkhai-ki          #+#    #+#             */
-/*   Updated: 2025/03/22 16:44:51 by kkhai-ki         ###   ########.fr       */
+/*   Updated: 2025/03/24 11:45:39 by kkhai-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 Bureaucrat::Bureaucrat()
 	: _name("John Doe"),
@@ -58,11 +59,9 @@ Bureaucrat::Bureaucrat(const Bureaucrat &src)
 Bureaucrat	&Bureaucrat::operator=(const Bureaucrat &src)
 {
 	if (this != &src)
-	{
 		this->_grade = src._grade;
-		if (DEBUG == 1)
-			std::cout << "Bureaucrat copy assignment operator called" << std::endl;
-	}
+	if (DEBUG == 1)
+		std::cout << "Bureaucrat copy assignment operator called" << std::endl;
 	return (*this);
 }
 
@@ -92,6 +91,20 @@ void	Bureaucrat::decrementGrade()
 	{
 		this->_grade++;
 		std::cout << this->_name << "'s new grade is " << this->_grade << std::endl;
+	}
+}
+
+void	Bureaucrat::signForm(Form &form)
+{
+	try
+	{
+		form.beSigned(*this);
+		std::cout << _name << " signed " << form.getName() << ".\n";
+	}
+	catch (const Form::GradeTooLowException &e)
+	{
+		std::cout << _name << " couldn't sign " << form.getName() \
+			<< " because grade is too low.\n";
 	}
 }
 

@@ -19,7 +19,6 @@
 
 # include <iostream>
 # include <stdexcept>
-# include "Form.hpp"
 
 class Bureaucrat
 {
@@ -32,7 +31,7 @@ class Bureaucrat
 
 		void	incrementGrade();
 		void	decrementGrade();
-		void	signForm(Form &form);
+		void	signForm(class Form &form);
 
 		const std::string	&getName() const;
 		int					getGrade() const;

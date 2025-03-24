@@ -6,11 +6,11 @@
 /*   By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 08:41:54 by kkhai-ki          #+#    #+#             */
-/*   Updated: 2025/03/22 16:45:39 by kkhai-ki         ###   ########.fr       */
+/*   Updated: 2025/03/24 11:56:25 by kkhai-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Bureaucrat.hpp"
+#include "Form.hpp"
 #include <iostream>
 #include <sstream>
 
@@ -61,95 +61,170 @@ int	main()
 	return 0;
 }
 
-bool	test_Bureaucrat_DefaultConstructor()
+bool	test_Form_DefaultConstructor()
 {
 	std::ostringstream	errors;
 	bool				result = true;
 
 	{
-		const std::string	expectedName = "John Doe";
-		const int			expectedGrade = 150;
-		Bureaucrat			b;
-		std::string			name = b.getName();
-		int					grade = b.getGrade();
+		const std::string	expectedName = "default";
+		const bool			expectedStatus = false;
+		const int			expectedGradeToSign = 150;
+		const int			expectedGradeToExecute = 1;
+
+		Form				form;
+		std::string			name = form.getName();
+		bool				status = form.getSigned();
+		int					gradeToSign = form.getGradeToSign();
+		int					gradeToExecute = form.getGradeToExecute();
 
 		CHECK(expectedName, name);
-		CHECK(expectedGrade, grade);
+		CHECK(expectedStatus, status);
+		CHECK(expectedGradeToSign, gradeToSign);
+		CHECK(expectedGradeToExecute, gradeToExecute);
 	}
 	REPORT(result, "Default constructor test");
 	return (result);
 }
 
-bool	test_Bureaucrat_ParameterizedConstructor()
+bool	test_Form_ParameterizedConstructor()
 {
 	std::ostringstream	errors;
 	bool				result = true;
 
 	{
-		const std::string	expectedName = "Duck";
-		const int			expectedGrade = 100;
-		Bureaucrat			b(expectedName, expectedGrade);
-		Bureaucrat			c(b);
-		std::string			name = c.getName();
-		int					grade = c.getGrade();
+		const std::string	expectedName = "Params";
+		const bool			expectedStatus = false;
+		const int			expectedGradeToSign = 100;
+		const int			expectedGradeToExecute = 50;
+
+		Form		form("Params", 100, 50);
+		std::string	name = form.getName();
+		bool		status = form.getSigned();
+		int			gradeToSign = form.getGradeToSign();
+		int			gradeToExecute = form.getGradeToExecute();
 
 		CHECK(expectedName, name);
-		CHECK(expectedGrade, grade);
+		CHECK(expectedStatus, status);
+		CHECK(expectedGradeToSign, gradeToSign);
+		CHECK(expectedGradeToExecute, gradeToExecute);
 	}
 	REPORT(result, "Parameterized constructor test");
 	return (result);
 }
 
-bool	test_Bureaucrat_CopyConstructor()
+bool	test_Form_CopyConstructor()
 {
 	std::ostringstream	errors;
 	bool				result = true;
 
 	{
-		const std::string	expectedName = "Blop";
-		const int			expectedGrade = 120;
-		Bureaucrat			b(expectedName, expectedGrade);
-		Bureaucrat			c(b);
-		std::string			name = c.getName();
-		int					grade = c.getGrade();
+		const std::string	expectedName = "Copy";
+		const bool			expectedStatus = false;
+		const int			expectedGradeToSign = 100;
+		const int			expectedGradeToExecute = 50;
+
+		Form		form("Copy", 100, 50);
+		Form		copyForm(form);
+		std::string	name = copyForm.getName();
+		bool		status = copyForm.getSigned();
+		int			gradeToSign = copyForm.getGradeToSign();
+		int			gradeToExecute = copyForm.getGradeToExecute();
 
 		CHECK(expectedName, name);
-		CHECK(expectedGrade, grade);
+		CHECK(expectedStatus, status);
+		CHECK(expectedGradeToSign, gradeToSign);
+		CHECK(expectedGradeToExecute, gradeToExecute);
 	}
 	REPORT(result, "Copy constructor test");
 	return (result);
 }
 
-bool	test_Bureaucrat_CopyAssignmentOperator()
+bool	test_Form_BeSigned()
 {
 	std::ostringstream	errors;
 	bool				result = true;
 
 	{
-		const std::string	expectedName = "Monty";
-		const int			expectedGrade = 120;
-		Bureaucrat	b(expectedName, expectedGrade);
-		Bureaucrat	c = b;
-		int			grade = c.getGrade();
+		const bool	expectedStatus = true;
 
-		CHECK(expectedGrade, grade);
+		Form		form("Sign", 20, 5);
+		Bureaucrat	b("HighGrade", 20);
+
+		form.beSigned(b);
+		bool	status = form.getSigned();
+
+		CHECK(expectedStatus, status);
 	}
-	REPORT(result, "Copy assignment operator test");
+	{
+		const std::string	expectedException = "Form::GradeTooLowException";
+
+		Form		form("cantSign", 50, 5);
+		Bureaucrat	b("LowGrade", 120);
+
+		std::string	exceptionCaught;
+		try
+		{
+			form.beSigned(b);
+		}
+		catch (Form::GradeTooLowException &e)
+		{
+			exceptionCaught = "Form::GradeTooLowException";
+			std::cout << e.what() << "\n";
+		}
+		CHECK_EXCEPTION(expectedException, exceptionCaught);
+	}
+	REPORT(result, "beSigned test");
 	return (result);
 }
 
-bool	test_Bureaucrat_InsertionOperator()
+bool	test_Form_CopyAssignmentOperator()
+{
+	std::ostringstream	errors;
+	bool				result = true;
+
+	{
+		const std::string	expectedName = "Copy Assign";
+		const bool			expectedStatus = true;
+		const int			expectedGradeToSign = 100;
+		const int			expectedGradeToExecute = 50;
+
+		Form		form("CopyNot", 20, 5);
+		Form		copyForm("Copy Assign", 100, 50);
+		Bureaucrat	b("Llama", 1);
+		form.beSigned(b);
+		copyForm = form;
+
+		std::string	name = copyForm.getName();
+		bool		status = copyForm.getSigned();
+		int			gradeToSign = copyForm.getGradeToSign();
+		int			gradeToExecute = copyForm.getGradeToExecute();
+
+		CHECK(expectedName, name);
+		CHECK(expectedStatus, status);
+		CHECK(expectedGradeToSign, gradeToSign);
+		CHECK(expectedGradeToExecute, gradeToExecute);
+	}
+	REPORT(result, "Copy assignment test");
+	return (result);
+}
+
+bool	test_Form_InsertionOperator()
 {
 	std::ostringstream	buffer;
 	std::ostringstream	errors;
 	bool				result = true;
 
 	{
-		const std::string	expectedString = "John Doe, bureaucrat grade 150.";
-		Bureaucrat	b;
+		const std::string	expectedString =
+			"Form default is not signed yet. " \
+			"Grade required to sign is 150. " \
+			"Grade required to execute is 1.\n";
+
+		Form		form;
 		std::string	string;
 
-		buffer << b;
+		buffer << form;
 		string = buffer.str();
 		CHECK(expectedString, string);
 	}
@@ -157,107 +232,107 @@ bool	test_Bureaucrat_InsertionOperator()
 	return (result);
 }
 
-bool	test_Bureaucrat_GradeTooHighException()
-{
-	const std::string	expectedExeception = "Bureaucrat::GradeTooHighException";
-	std::ostringstream	errors;
-	std::string			exception_caught;
-	bool				result = true;
-
-	try
-	{
-		Bureaucrat	b("Bob", 0);
-	}
-	catch (const Bureaucrat::GradeTooHighException &e)
-	{
-		exception_caught = "Bureaucrat::GradeTooHighException";
-	}
-	CHECK_EXCEPTION(expectedExeception, exception_caught);
-	REPORT(result, "GradeTooHigh exception test");
-	return (result);
-}
-
-bool	test_Bureaucrat_GradeTooLowException()
-{
-	const std::string	expectedExeception = "Bureaucrat::GradeTooLowException";
-	std::ostringstream	errors;
-	std::string			exception_caught;
-	bool				result = true;
-
-	try
-	{
-		Bureaucrat	b("Bub", 151);
-	}
-	catch (const Bureaucrat::GradeTooLowException &e)
-	{
-		exception_caught = "Bureaucrat::GradeTooLowException";
-	}
-	CHECK_EXCEPTION(expectedExeception, exception_caught);
-	REPORT(result, "GradeTooLow exception test");
-	return (result);
-}
-
-bool	test_Bureaucrat_IncrementGrade()
+bool	test_Form_GradeTooHighException()
 {
 	std::ostringstream	errors;
 	bool				result = true;
+	const std::string	expectedException("Form::GradeTooHighException");
 
 	{
-		const int	expectedGrade = 1;
-		int			grade;
-		Bureaucrat	b("David", 2);
-
-		b.incrementGrade();
-		grade = b.getGrade();
-		CHECK(expectedGrade, grade);
-	}
-	{
-		const std::string	expectedExeception = "Bureaucrat::GradeTooHighException";
-		Bureaucrat			c("Nick", 1);
-		std::string			exception_caught;
+		std::string	exceptionCaught;
 		try
 		{
-			c.incrementGrade();
+			Form	form("SignTooHigh", 0, 50);
 		}
-		catch (const Bureaucrat::GradeTooHighException &e)
+		catch (const Form::GradeTooHighException &e)
 		{
-			exception_caught = "Bureaucrat::GradeTooHighException";
+			exceptionCaught = "Form::GradeTooHighException";
+			std::cout << e.what() << "\n";
 		}
-		CHECK_EXCEPTION(expectedExeception, exception_caught);
+		CHECK_EXCEPTION(expectedException, exceptionCaught);
 	}
-	REPORT(result, "IncrementGrade test");
+	{
+		std::string	exceptionCaught;
+		try
+		{
+			Form	form("ExecTooHigh", 50, 0);
+		}
+		catch (const Form::GradeTooHighException &e)
+		{
+			exceptionCaught = "Form::GradeTooHighException";
+			std::cout << e.what() << "\n";
+		}
+		CHECK_EXCEPTION(expectedException, exceptionCaught);
+	}
+	REPORT(result, "GradeTooHighException test");
 	return (result);
 }
 
-bool	test_Bureaucrat_DecrementGrade()
+bool	test_Form_GradeTooLowException()
+{
+	std::ostringstream	errors;
+	bool				result = true;
+	const std::string	expectedException("Form::GradeTooLowException");
+
+	{
+		std::string	exceptionCaught;
+		try
+		{
+			Form	form("SignTooLow", 151, 50);
+		}
+		catch (const Form::GradeTooLowException &e)
+		{
+			exceptionCaught = "Form::GradeTooLowException";
+			std::cout << e.what() << "\n";
+		}
+		CHECK_EXCEPTION(expectedException, exceptionCaught);
+	}
+	{
+		std::string	exceptionCaught;
+		try
+		{
+			Form	form("ExecTooLow", 50, 151);
+		}
+		catch (const Form::GradeTooLowException &e)
+		{
+			exceptionCaught = "Form::GradeTooLowException";
+			std::cout << e.what() << "\n";
+		}
+		CHECK_EXCEPTION(expectedException, exceptionCaught);
+	}
+	REPORT(result, "GradeTooLowException test");
+	return (result);
+}
+
+bool	test_Form_SignForm()
 {
 	std::ostringstream	errors;
 	bool				result = true;
 
 	{
-		const int	expectedGrade = 2;
-		int			grade;
-		Bureaucrat	b("Lynn", 1);
+		bool	expectedStatus = true;
 
-		b.decrementGrade();
-		grade = b.getGrade();
-		CHECK(expectedGrade, grade);
+		Form		form("SignForm", 1, 1);
+		Bureaucrat	b("Fed", 1);
+
+
+		b.signForm(form);
+		bool	status = form.getSigned();
+
+		CHECK(expectedStatus, status);
 	}
 	{
-		const std::string	expectedExeception = "Bureaucrat::GradeTooLowException";
-		std::string			exception_caught;
-		Bureaucrat			c("Cat", 150);
-		try
-		{
-			c.decrementGrade();
-		}
-		catch (const Bureaucrat::GradeTooLowException &e)
-		{
-			exception_caught = "Bureaucrat::GradeTooLowException";
-		}
-		CHECK_EXCEPTION(expectedExeception, exception_caught);
+		bool	expectedStatus = false;
+
+		Form		form("SignForm", 1, 1);
+		Bureaucrat	b("Meat", 150);
+
+		b.signForm(form);
+		bool	status = form.getSigned();
+
+		CHECK(expectedStatus, status);
 	}
-	REPORT(result, "DecrementGrade test");
+	REPORT(result, "SignForm test");
 	return (result);
 }
 
@@ -267,15 +342,15 @@ void	run_tests()
 	int		failed = 0;
 	bool	(*tests[])() = \
 	{
-		test_Bureaucrat_DefaultConstructor,
-		test_Bureaucrat_ParameterizedConstructor,
-		test_Bureaucrat_CopyConstructor,
-		test_Bureaucrat_CopyAssignmentOperator,
-		test_Bureaucrat_InsertionOperator,
-		test_Bureaucrat_GradeTooHighException,
-		test_Bureaucrat_GradeTooLowException,
-		test_Bureaucrat_IncrementGrade,
-		test_Bureaucrat_DecrementGrade,
+		test_Form_DefaultConstructor,
+		test_Form_ParameterizedConstructor,
+		test_Form_CopyConstructor,
+		test_Form_BeSigned,
+		test_Form_CopyAssignmentOperator,
+		test_Form_InsertionOperator,
+		test_Form_GradeTooHighException,
+		test_Form_GradeTooLowException,
+		test_Form_SignForm,
 	};
 
 	int	num_tests = sizeof(tests) / sizeof(tests[0]);

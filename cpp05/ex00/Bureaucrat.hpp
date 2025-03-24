@@ -6,7 +6,7 @@
 /*   By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 08:42:15 by kkhai-ki          #+#    #+#             */
-/*   Updated: 2025/03/22 16:46:18 by kkhai-ki         ###   ########.fr       */
+/*   Updated: 2025/03/24 09:31:59 by kkhai-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <stdexcept>
 
 class Bureaucrat
-{cpp05/ex00/Bureaucrat.cpp cpp05/ex00/Bureaucrat.hpp cpp05/ex00/main.cpp cpp05/ex00/Makefile
+{
 	public:
 		Bureaucrat();
 		~Bureaucrat();
