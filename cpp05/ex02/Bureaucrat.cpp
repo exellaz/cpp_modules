@@ -6,7 +6,7 @@
 /*   By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 08:42:17 by kkhai-ki          #+#    #+#             */
-/*   Updated: 2025/03/25 15:39:29 by kkhai-ki         ###   ########.fr       */
+/*   Updated: 2025/03/27 23:01:40 by kkhai-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void	Bureaucrat::decrementGrade()
 	}
 }
 
-void	Bureaucrat::signForm(Form &form)
+void	Bureaucrat::signForm(AForm &form)
 {
 	std::ostringstream	strStream;
 
@@ -111,7 +111,7 @@ void	Bureaucrat::signForm(Form &form)
 		strStream << _name << " signed " << form.getName() << ".\n";
 		printMsg(strStream.str());
 	}
-	catch (const Form::GradeTooLowException &e)
+	catch (const AForm::GradeTooLowException &e)
 	{
 		strStream << _name << " couldn't sign " << form.getName() \
 			<< " because " << e.what() << "\n";

@@ -6,59 +6,63 @@
 /*   By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 15:44:12 by kkhai-ki          #+#    #+#             */
-/*   Updated: 2025/03/25 15:39:11 by kkhai-ki         ###   ########.fr       */
+/*   Updated: 2025/03/28 21:01:32 by kkhai-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "AForm.hpp"
 
-Form::Form()
+AForm::AForm()
 	: _name("default"),
+	_target("default target"),
 	_signed(false),
 	_gradeToSign(150),
 	_gradeToExecute(1)
 {
-	printMsg("Form default constructor called\n");
+	printMsg("AForm default constructor called\n");
 }
 
-Form::~Form()
+AForm::~AForm()
 {
-	printMsg("Form destructor called\n");
+	printMsg("AForm destructor called\n");
 }
 
-Form::Form(const std::string &name, const int gradeToSign, const int gradeToExecute)
+AForm::AForm(const std::string &name, const std::string &target, \
+	const int gradeToSign, const int gradeToExecute)
 	: _name(name),
+	_target(target),
 	_signed(false),
 	_gradeToSign(gradeToSign),
 	_gradeToExecute(gradeToExecute)
 {
 	if (gradeToSign < 1 || gradeToExecute < 1)
-		throw Form::GradeTooHighException();
+		throw AForm::GradeTooHighException();
 	else if (gradeToSign > 150 || gradeToExecute > 150)
-		throw Form::GradeTooLowException();
-	printMsg("Form parameterized constructor called\n");
+		throw AForm::GradeTooLowException();
+	printMsg("AForm parameterized constructor called\n");
 }
 
-Form::Form(const Form &src)
+AForm::AForm(const AForm &src)
 	: _name(src._name),
+	_target(src._target),
 	_signed(src._signed),
 	_gradeToSign(src._gradeToSign),
 	_gradeToExecute(src._gradeToExecute)
 {
-	printMsg("Form copy constructor called\n");
+	printMsg("AForm copy constructor called\n");
 }
 
-Form	&Form::operator=(const Form &src)
+AForm	&AForm::operator=(const AForm &src)
 {
 	if (this != &src)
 		_signed = src._signed;
-	printMsg("Form copy assignment operator called\n");
+	printMsg("AForm copy assignment operator called\n");
 	return (*this);
 }
 
-std::ostream	&operator<<(std::ostream &stream, const Form &src)
+std::ostream	&operator<<(std::ostream &stream, const AForm &src)
 {
-	stream << "Form " << src.getName();
+	stream << "AForm " << src.getName();
 	if (src.getSigned() == false)
 		stream << " is not signed yet. ";
 	else
@@ -68,31 +72,44 @@ std::ostream	&operator<<(std::ostream &stream, const Form &src)
 	return (stream);
 }
 
-void	Form::beSigned(const Bureaucrat &bureaucrat)
+void	AForm::beSigned(const Bureaucrat &bureaucrat)
 {
 	if (bureaucrat.getGrade() > _gradeToSign)
-		throw Form::GradeTooLowException();
+		throw AForm::GradeTooLowException();
 	else
 		_signed = true;
-
 }
 
-const std::string &Form::getName() const
+void	AForm::execute(Bureaucrat const & executor)
+{
+	if (_signed == false)
+		return ;
+	if (executor.getGrade() < _gradeToExecute)
+		throw AForm::GradeTooLowException();
+	action();
+}
+
+const std::string	&AForm::getName() const
 {
 	return (_name);
 }
 
-bool	Form::getSigned() const
+const std::string	&AForm::getTarget() const
+{
+	return (_target);
+}
+
+bool	AForm::getSigned() const
 {
 	return (_signed);
 }
 
-int	Form::getGradeToSign() const
+int	AForm::getGradeToSign() const
 {
 	return (_gradeToSign);
 }
 
-int	Form::getGradeToExecute() const
+int	AForm::getGradeToExecute() const
 {
 	return (_gradeToExecute);
 }
@@ -103,12 +120,17 @@ void	printMsg(std::string str)
 		std::cout << str;
 }
 
-const char	*Form::GradeTooHighException::what() const throw()
+const char	*AForm::GradeTooHighException::what() const throw()
 {
 	return ("grade is too high");
 }
 
-const char	*Form::GradeTooLowException::what() const throw()
+const char	*AForm::GradeTooLowException::what() const throw()
 {
 	return ("grade is too low");
+}
+
+const char	*AForm::FormNotSignedException::what() const throw()
+{
+	return ("form not signed");
 }

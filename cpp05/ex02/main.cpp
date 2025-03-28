@@ -6,11 +6,12 @@
 /*   By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 08:41:54 by kkhai-ki          #+#    #+#             */
-/*   Updated: 2025/03/25 15:39:49 by kkhai-ki         ###   ########.fr       */
+/*   Updated: 2025/03/28 21:45:31 by kkhai-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "AForm.hpp"
+#include "ShruberryCreationForm.hpp"
 #include <iostream>
 #include <sstream>
 
@@ -61,287 +62,165 @@ int	main()
 	return 0;
 }
 
-bool	test_Form_DefaultConstructor()
+bool test_Shruberry_DefaultConstructor()
 {
 	std::ostringstream	errors;
 	bool				result = true;
 
 	{
-		const std::string	expectedName = "default";
+		const std::string	expectedName = "ShruberryCreationForm";
+		const std::string	expectedTarget = "default target";
 		const bool			expectedStatus = false;
-		const int			expectedGradeToSign = 150;
-		const int			expectedGradeToExecute = 1;
+		const int			expectedGradeToSign = 145;
+		const int			expectedGradeToExecute = 137;
 
-		Form				form;
+		ShruberryCreationForm	form;
 		std::string			name = form.getName();
+		std::string			target = form.getTarget();
 		bool				status = form.getSigned();
 		int					gradeToSign = form.getGradeToSign();
 		int					gradeToExecute = form.getGradeToExecute();
 
 		CHECK(expectedName, name);
+		CHECK(expectedTarget, target);
 		CHECK(expectedStatus, status);
 		CHECK(expectedGradeToSign, gradeToSign);
 		CHECK(expectedGradeToExecute, gradeToExecute);
 	}
-	REPORT(result, "Default constructor test");
+	REPORT(result, "Shruberry default constructor test");
 	return (result);
 }
 
-bool	test_Form_ParameterizedConstructor()
+bool test_Shruberry_ParameterizedConstructor()
 {
 	std::ostringstream	errors;
 	bool				result = true;
 
 	{
-		const std::string	expectedName = "Params";
+		const std::string	expectedName = "ShruberryCreationForm";
+		const std::string	expectedTarget = "custom target";
 		const bool			expectedStatus = false;
-		const int			expectedGradeToSign = 100;
-		const int			expectedGradeToExecute = 50;
+		const int			expectedGradeToSign = 145;
+		const int			expectedGradeToExecute = 137;
 
-		Form		form("Params", 100, 50);
-		std::string	name = form.getName();
-		bool		status = form.getSigned();
-		int			gradeToSign = form.getGradeToSign();
-		int			gradeToExecute = form.getGradeToExecute();
+		ShruberryCreationForm	form(expectedTarget);
+		std::string				name = form.getName();
+		std::string				target = form.getTarget();
+		bool					status = form.getSigned();
+		int						gradeToSign = form.getGradeToSign();
+		int						gradeToExecute = form.getGradeToExecute();
 
 		CHECK(expectedName, name);
+		CHECK(expectedTarget, target);
 		CHECK(expectedStatus, status);
 		CHECK(expectedGradeToSign, gradeToSign);
 		CHECK(expectedGradeToExecute, gradeToExecute);
 	}
-	REPORT(result, "Parameterized constructor test");
+	REPORT(result, "Shruberry Parameterized constructor test");
 	return (result);
 }
 
-bool	test_Form_CopyConstructor()
+bool test_Shruberry_CopyConstructor()
+{
+	std::ostringstream errors;
+	bool result = true;
+
+	{
+		const std::string expectedTarget = "copy target";
+
+		ShruberryCreationForm original(expectedTarget);
+		ShruberryCreationForm copy(original);
+
+		CHECK(original.getName(), copy.getName());
+		CHECK(original.getTarget(), copy.getTarget());
+		CHECK(original.getSigned(), copy.getSigned());
+		CHECK(original.getGradeToSign(), copy.getGradeToSign());
+		CHECK(original.getGradeToExecute(), copy.getGradeToExecute());
+	}
+	REPORT(result, "Shruberry copy constructor test");
+	return (result);
+}
+
+bool	test_Shruberry_AssignmentOperator()
 {
 	std::ostringstream	errors;
 	bool				result = true;
 
 	{
-		const std::string	expectedName = "Copy";
-		const bool			expectedStatus = false;
-		const int			expectedGradeToSign = 100;
-		const int			expectedGradeToExecute = 50;
+		const std::string expectedTarget = "assigned target";
 
-		Form		form("Copy", 100, 50);
-		Form		copyForm(form);
-		std::string	name = copyForm.getName();
-		bool		status = copyForm.getSigned();
-		int			gradeToSign = copyForm.getGradeToSign();
-		int			gradeToExecute = copyForm.getGradeToExecute();
+		ShruberryCreationForm original(expectedTarget);
+		ShruberryCreationForm assigned("temp");
+		assigned = original;
 
-		CHECK(expectedName, name);
-		CHECK(expectedStatus, status);
-		CHECK(expectedGradeToSign, gradeToSign);
-		CHECK(expectedGradeToExecute, gradeToExecute);
+		CHECK(original.getSigned(), assigned.getSigned());
 	}
-	REPORT(result, "Copy constructor test");
+	REPORT(result, "Shruberry assignment operator Test");
 	return (result);
 }
 
-bool	test_Form_BeSigned()
+bool test_Shruberry_Action()
 {
 	std::ostringstream	errors;
 	bool				result = true;
 
 	{
-		const bool	expectedStatus = true;
+		const std::string	expectedException = "AForm::GradeTooLowException";
 
-		Form		form("Sign", 20, 5);
-		Bureaucrat	b("highGrade", 20);
-
-		form.beSigned(b);
-		bool	status = form.getSigned();
-
-		CHECK(expectedStatus, status);
-	}
-	{
-		const std::string	expectedException = "Form::GradeTooLowException";
-
-		Form		form("cantSign", 50, 5);
-		Bureaucrat	b("lowGrade", 120);
+		ShruberryCreationForm	form("tree_target");
+		Bureaucrat				bureaucrat("lowGrade", 150);
 
 		std::string	exceptionCaught;
 		try
 		{
-			form.beSigned(b);
+			form.beSigned(bureaucrat);
 		}
-		catch (Form::GradeTooLowException &e)
+		catch (const AForm::GradeTooLowException &e)
 		{
-			exceptionCaught = "Form::GradeTooLowException";
+			exceptionCaught = "AForm::GradeTooLowException";
 		}
 		CHECK_EXCEPTION(expectedException, exceptionCaught);
 	}
-	REPORT(result, "beSigned test");
-	return (result);
-}
-
-bool	test_Form_CopyAssignmentOperator()
-{
-	std::ostringstream	errors;
-	bool				result = true;
-
 	{
-		const std::string	expectedName = "Copy Assign";
-		const bool			expectedStatus = true;
-		const int			expectedGradeToSign = 100;
-		const int			expectedGradeToExecute = 50;
+		std::string			expectedException = "";
+		std::stringstream	expectedContent;
+		expectedContent <<	"     ccee88oo\n"
+							"  C8O8O8Q8PoOb o8oo\n"
+							" dOB69QO8PdUOpugoO9bD\n"
+							"CgggbU8OU qOp qOdoUOdcb\n"
+							"    6OuU  /p u gcoUodpP\n"
+							"      \\\\\\//  /douUP\n"
+							"        \\\\\\////\n"
+							"         |||/\\\n"
+							"         |||\\/\n"
+							"         |||||\n"
+							"   .....//||||\\....";
 
-		Form		form("CopyNot", 20, 5);
-		Form		copyForm("Copy Assign", 100, 50);
-		Bureaucrat	b("Llama", 1);
-		form.beSigned(b);
-		copyForm = form;
+		ShruberryCreationForm	form("tree_target");
+		Bureaucrat				bureaucrat("sufficientGrade", 138);
+		std::ifstream			infile;
+		std::ostringstream		content;
 
-		std::string	name = copyForm.getName();
-		bool		status = copyForm.getSigned();
-		int			gradeToSign = copyForm.getGradeToSign();
-		int			gradeToExecute = copyForm.getGradeToExecute();
-
-		CHECK(expectedName, name);
-		CHECK(expectedStatus, status);
-		CHECK(expectedGradeToSign, gradeToSign);
-		CHECK(expectedGradeToExecute, gradeToExecute);
-	}
-	REPORT(result, "Copy assignment test");
-	return (result);
-}
-
-bool	test_Form_InsertionOperator()
-{
-	std::ostringstream	buffer;
-	std::ostringstream	errors;
-	bool				result = true;
-
-	{
-		const std::string	expectedString =
-			"Form default is not signed yet. " \
-			"Grade required to sign is 150. " \
-			"Grade required to execute is 1.\n";
-
-		Form		form;
-		std::string	string;
-
-		buffer << form;
-		string = buffer.str();
-		CHECK(expectedString, string);
-	}
-	REPORT(result, "Insertion operator test");
-	return (result);
-}
-
-bool	test_Form_GradeTooHighException()
-{
-	std::ostringstream	errors;
-	bool				result = true;
-	const std::string	expectedException("Form::GradeTooHighException");
-
-	{
 		std::string	exceptionCaught;
 		try
 		{
-			Form	form("signTooHigh", 0, 50);
+			form.beSigned(bureaucrat);
+			form.execute(bureaucrat);
 		}
-		catch (const Form::GradeTooHighException &e)
+		catch (...)
 		{
-			exceptionCaught = "Form::GradeTooHighException";
+			exceptionCaught = "Something went wrong";
 		}
+		infile.open("tree_target_shruberry");
+		content << infile.rdbuf();
+
+		CHECK(expectedContent.str(), content.str());
 		CHECK_EXCEPTION(expectedException, exceptionCaught);
 	}
-	{
-		std::string	exceptionCaught;
-		try
-		{
-			Form	form("execTooHigh", 50, 0);
-		}
-		catch (const Form::GradeTooHighException &e)
-		{
-			exceptionCaught = "Form::GradeTooHighException";
-		}
-		CHECK_EXCEPTION(expectedException, exceptionCaught);
-	}
-	REPORT(result, "GradeTooHighException test");
+	REPORT(result, "Shruberry action method Test");
 	return (result);
 }
 
-bool	test_Form_GradeTooLowException()
-{
-	std::ostringstream	errors;
-	bool				result = true;
-	const std::string	expectedException("Form::GradeTooLowException");
-
-	{
-		std::string	exceptionCaught;
-		try
-		{
-			Form	form("signTooLow", 151, 50);
-		}
-		catch (const Form::GradeTooLowException &e)
-		{
-			exceptionCaught = "Form::GradeTooLowException";
-		}
-		CHECK_EXCEPTION(expectedException, exceptionCaught);
-	}
-	{
-		std::string	exceptionCaught;
-		try
-		{
-			Form	form("execTooLow", 50, 151);
-		}
-		catch (const Form::GradeTooLowException &e)
-		{
-			exceptionCaught = "Form::GradeTooLowException";
-		}
-		CHECK_EXCEPTION(expectedException, exceptionCaught);
-	}
-	REPORT(result, "GradeTooLowException test");
-	return (result);
-}
-
-bool	test_Form_SignForm()
-{
-	std::ostringstream	errors;
-	bool				result = true;
-
-	{
-		bool	expectedStatus = true;
-
-		Form		form("signForm", 1, 1);
-		Bureaucrat	b("Fed", 1);
-
-
-		b.signForm(form);
-		bool	status = form.getSigned();
-
-		CHECK(expectedStatus, status);
-	}
-	{
-		bool	expectedStatus = false;
-
-		Form		form("SignForm", 1, 1);
-		Bureaucrat	b("Meat", 150);
-
-		b.signForm(form);
-		bool	status = form.getSigned();
-
-		CHECK(expectedStatus, status);
-	}
-	{
-		const bool	expectedStatus = true;
-
-		Form		form("Signed", 150, 150);
-		Bureaucrat	b("Ham", 150);
-
-		b.signForm(form);
-		b.signForm(form);
-		bool	status = form.getSigned();
-
-		CHECK(expectedStatus, status);
-	}
-	REPORT(result, "SignForm test");
-	return (result);
-}
 
 void	run_tests()
 {
@@ -349,15 +228,11 @@ void	run_tests()
 	int		failed = 0;
 	bool	(*tests[])() = \
 	{
-		test_Form_DefaultConstructor,
-		test_Form_ParameterizedConstructor,
-		test_Form_CopyConstructor,
-		test_Form_BeSigned,
-		test_Form_CopyAssignmentOperator,
-		test_Form_InsertionOperator,
-		test_Form_GradeTooHighException,
-		test_Form_GradeTooLowException,
-		test_Form_SignForm,
+		test_Shruberry_DefaultConstructor,
+		test_Shruberry_ParameterizedConstructor,
+		test_Shruberry_CopyConstructor,
+		test_Shruberry_AssignmentOperator,
+		test_Shruberry_Action,
 	};
 
 	int	num_tests = sizeof(tests) / sizeof(tests[0]);
