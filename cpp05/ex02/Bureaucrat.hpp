@@ -33,6 +33,7 @@ class Bureaucrat
 		void	incrementGrade();
 		void	decrementGrade();
 		void	signForm(class AForm &form);
+		void	executeForm(class AForm const & form);
 
 		const std::string	&getName() const;
 		int					getGrade() const;

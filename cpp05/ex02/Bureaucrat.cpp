@@ -6,7 +6,7 @@
 /*   By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 08:42:17 by kkhai-ki          #+#    #+#             */
-/*   Updated: 2025/03/27 23:01:40 by kkhai-ki         ###   ########.fr       */
+/*   Updated: 2025/04/05 15:07:07 by kkhai-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,23 @@ void	Bureaucrat::signForm(AForm &form)
 			<< " because " << e.what() << "\n";
 		printMsg(strStream.str());
 	}
+}
+
+void	Bureaucrat::executeForm(AForm const & form)
+{
+	std::ostringstream	strStream;
+
+	try
+	{
+		form.execute(*this);
+		strStream << _name << " executed " << form.getName() << "\n";
+	}
+	catch (std::exception &e)
+	{
+		strStream << _name << " could not execute " << form.getName() \
+			<< " because " << e.what() << "\n";
+	}
+	printMsg(strStream.str());
 }
 
 const std::string	&Bureaucrat::getName() const

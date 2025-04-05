@@ -6,7 +6,7 @@
 /*   By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 08:41:54 by kkhai-ki          #+#    #+#             */
-/*   Updated: 2025/03/28 21:45:31 by kkhai-ki         ###   ########.fr       */
+/*   Updated: 2025/04/05 15:26:40 by kkhai-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,64 @@ int	main()
 	return 0;
 }
 
-bool test_Shruberry_DefaultConstructor()
+bool	test_Bureaucrat_executeForm()
+{
+	std::ostringstream	errors;
+	bool				result = true;
+
+	{
+		ShruberryCreationForm	form("tree_target");
+		Bureaucrat				bureaucrat("lowGrade", 145);
+		std::ifstream			file;
+
+		bureaucrat.signForm(form);
+		bureaucrat.executeForm(form);
+		file.open("tree_target_shruberry");
+
+		CHECK(false, file.good())
+	}
+	{
+		std::string				expectedException = "";
+		std::stringstream		expectedContent;
+		expectedContent <<	"     ccee88oo\n"
+							"  C8O8O8Q8PoOb o8oo\n"
+							" dOB69QO8PdUOpugoO9bD\n"
+							"CgggbU8OU qOp qOdoUOdcb\n"
+							"    6OuU  /p u gcoUodpP\n"
+							"      \\\\\\//  /douUP\n"
+							"        \\\\\\////\n"
+							"         |||/\\\n"
+							"         |||\\/\n"
+							"         |||||\n"
+							"   .....//||||\\....";
+
+		ShruberryCreationForm	form("tree_target");
+		Bureaucrat				bureaucrat("Bob", 1);
+		std::string				exceptionCaught;
+		std::ifstream			infile;
+		std::ostringstream		content;
+
+		try
+		{
+			bureaucrat.signForm(form);
+			bureaucrat.executeForm(form);
+		}
+		catch (...)
+		{
+			exceptionCaught = "Something went wrong";
+		}
+		infile.open("tree_target_shruberry");
+		content << infile.rdbuf();
+		std::remove("tree_target_shruberry");
+
+		CHECK(expectedContent.str(), content.str());
+		CHECK_EXCEPTION(expectedException, exceptionCaught);
+	}
+	REPORT(result, "Bureaucrat executeForm test");
+	return (result);
+}
+
+bool	test_Shruberry_DefaultConstructor()
 {
 	std::ostringstream	errors;
 	bool				result = true;
@@ -75,11 +132,11 @@ bool test_Shruberry_DefaultConstructor()
 		const int			expectedGradeToExecute = 137;
 
 		ShruberryCreationForm	form;
-		std::string			name = form.getName();
-		std::string			target = form.getTarget();
-		bool				status = form.getSigned();
-		int					gradeToSign = form.getGradeToSign();
-		int					gradeToExecute = form.getGradeToExecute();
+		std::string				name = form.getName();
+		std::string				target = form.getTarget();
+		bool					status = form.getSigned();
+		int						gradeToSign = form.getGradeToSign();
+		int						gradeToExecute = form.getGradeToExecute();
 
 		CHECK(expectedName, name);
 		CHECK(expectedTarget, target);
@@ -91,7 +148,7 @@ bool test_Shruberry_DefaultConstructor()
 	return (result);
 }
 
-bool test_Shruberry_ParameterizedConstructor()
+bool	test_Shruberry_ParameterizedConstructor()
 {
 	std::ostringstream	errors;
 	bool				result = true;
@@ -120,7 +177,7 @@ bool test_Shruberry_ParameterizedConstructor()
 	return (result);
 }
 
-bool test_Shruberry_CopyConstructor()
+bool	test_Shruberry_CopyConstructor()
 {
 	std::ostringstream errors;
 	bool result = true;
@@ -159,7 +216,7 @@ bool	test_Shruberry_AssignmentOperator()
 	return (result);
 }
 
-bool test_Shruberry_Action()
+bool	test_Shruberry_Action()
 {
 	std::ostringstream	errors;
 	bool				result = true;
@@ -168,12 +225,13 @@ bool test_Shruberry_Action()
 		const std::string	expectedException = "AForm::GradeTooLowException";
 
 		ShruberryCreationForm	form("tree_target");
-		Bureaucrat				bureaucrat("lowGrade", 150);
+		Bureaucrat				bureaucrat("lowGrade", 145);
+		std::string				exceptionCaught;
 
-		std::string	exceptionCaught;
 		try
 		{
 			form.beSigned(bureaucrat);
+			form.execute(bureaucrat);
 		}
 		catch (const AForm::GradeTooLowException &e)
 		{
@@ -197,11 +255,11 @@ bool test_Shruberry_Action()
 							"   .....//||||\\....";
 
 		ShruberryCreationForm	form("tree_target");
-		Bureaucrat				bureaucrat("sufficientGrade", 138);
+		Bureaucrat				bureaucrat("sufficientGrade", 137);
 		std::ifstream			infile;
 		std::ostringstream		content;
+		std::string				exceptionCaught;
 
-		std::string	exceptionCaught;
 		try
 		{
 			form.beSigned(bureaucrat);
@@ -213,6 +271,7 @@ bool test_Shruberry_Action()
 		}
 		infile.open("tree_target_shruberry");
 		content << infile.rdbuf();
+		std::remove("tree_target_shruberry");
 
 		CHECK(expectedContent.str(), content.str());
 		CHECK_EXCEPTION(expectedException, exceptionCaught);
@@ -228,6 +287,7 @@ void	run_tests()
 	int		failed = 0;
 	bool	(*tests[])() = \
 	{
+		test_Bureaucrat_executeForm,
 		test_Shruberry_DefaultConstructor,
 		test_Shruberry_ParameterizedConstructor,
 		test_Shruberry_CopyConstructor,

@@ -6,7 +6,7 @@
 /*   By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 15:44:12 by kkhai-ki          #+#    #+#             */
-/*   Updated: 2025/03/28 21:01:32 by kkhai-ki         ###   ########.fr       */
+/*   Updated: 2025/04/05 15:17:33 by kkhai-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,11 +80,11 @@ void	AForm::beSigned(const Bureaucrat &bureaucrat)
 		_signed = true;
 }
 
-void	AForm::execute(Bureaucrat const & executor)
+void	AForm::execute(Bureaucrat const & executor) const
 {
 	if (_signed == false)
-		return ;
-	if (executor.getGrade() < _gradeToExecute)
+		throw AForm::FormNotSignedException();
+	if (executor.getGrade() > _gradeToExecute)
 		throw AForm::GradeTooLowException();
 	action();
 }
