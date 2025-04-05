@@ -6,14 +6,14 @@
 /*   By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 15:18:51 by kkhai-ki          #+#    #+#             */
-/*   Updated: 2025/03/28 21:10:25 by kkhai-ki         ###   ########.fr       */
+/*   Updated: 2025/04/05 15:35:03 by kkhai-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ShruberryCreationForm.hpp"
 
 ShruberryCreationForm::ShruberryCreationForm()
-	: AForm("ShruberryCreationForm","default target", 145, 137)
+	: AForm("ShruberryCreationForm","default_target", 145, 137)
 {
 	printMsg("Default Shruberry constructor called\n");
 }
