@@ -6,7 +6,7 @@
 /*   By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 15:44:12 by kkhai-ki          #+#    #+#             */
-/*   Updated: 2025/04/05 15:17:33 by kkhai-ki         ###   ########.fr       */
+/*   Updated: 2025/04/06 13:53:07 by kkhai-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ AForm::AForm()
 	_gradeToSign(150),
 	_gradeToExecute(1)
 {
-	printMsg("AForm default constructor called\n");
+	debugPrint("AForm default constructor called\n");
 }
 
 AForm::~AForm()
 {
-	printMsg("AForm destructor called\n");
+	debugPrint("AForm destructor called\n");
 }
 
 AForm::AForm(const std::string &name, const std::string &target, \
@@ -39,7 +39,7 @@ AForm::AForm(const std::string &name, const std::string &target, \
 		throw AForm::GradeTooHighException();
 	else if (gradeToSign > 150 || gradeToExecute > 150)
 		throw AForm::GradeTooLowException();
-	printMsg("AForm parameterized constructor called\n");
+	debugPrint("AForm parameterized constructor called\n");
 }
 
 AForm::AForm(const AForm &src)
@@ -49,14 +49,14 @@ AForm::AForm(const AForm &src)
 	_gradeToSign(src._gradeToSign),
 	_gradeToExecute(src._gradeToExecute)
 {
-	printMsg("AForm copy constructor called\n");
+	debugPrint("AForm copy constructor called\n");
 }
 
 AForm	&AForm::operator=(const AForm &src)
 {
 	if (this != &src)
 		_signed = src._signed;
-	printMsg("AForm copy assignment operator called\n");
+	debugPrint("AForm copy assignment operator called\n");
 	return (*this);
 }
 
@@ -114,7 +114,7 @@ int	AForm::getGradeToExecute() const
 	return (_gradeToExecute);
 }
 
-void	printMsg(std::string str)
+void	debugPrint(std::string str)
 {
 	if (DEBUG == 1)
 		std::cout << str;

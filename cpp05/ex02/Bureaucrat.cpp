@@ -6,7 +6,7 @@
 /*   By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 08:42:17 by kkhai-ki          #+#    #+#             */
-/*   Updated: 2025/04/05 15:07:07 by kkhai-ki         ###   ########.fr       */
+/*   Updated: 2025/04/06 13:56:10 by kkhai-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,44 +96,36 @@ void	Bureaucrat::decrementGrade()
 
 void	Bureaucrat::signForm(AForm &form)
 {
-	std::ostringstream	strStream;
-
 	if (form.getSigned() == true)
 	{
-		strStream << _name << " couldn't sign " << form.getName() \
+		std::cout << _name << " couldn't sign " << form.getName() \
 			<< " because it is already signed.\n";
-		printMsg(strStream.str());
 		return ;
 	}
 	try
 	{
 		form.beSigned(*this);
-		strStream << _name << " signed " << form.getName() << ".\n";
-		printMsg(strStream.str());
+		std::cout << _name << " signed " << form.getName() << ".\n";
 	}
 	catch (const AForm::GradeTooLowException &e)
 	{
-		strStream << _name << " couldn't sign " << form.getName() \
+		std::cout << _name << " couldn't sign " << form.getName() \
 			<< " because " << e.what() << "\n";
-		printMsg(strStream.str());
 	}
 }
 
 void	Bureaucrat::executeForm(AForm const & form)
 {
-	std::ostringstream	strStream;
-
 	try
 	{
 		form.execute(*this);
-		strStream << _name << " executed " << form.getName() << "\n";
+		std::cout << _name << " executed " << form.getName() << "\n";
 	}
 	catch (std::exception &e)
 	{
-		strStream << _name << " could not execute " << form.getName() \
+		std::cout << _name << " couldn't execute " << form.getName() \
 			<< " because " << e.what() << "\n";
 	}
-	printMsg(strStream.str());
 }
 
 const std::string	&Bureaucrat::getName() const

@@ -6,7 +6,7 @@
 /*   By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 15:29:53 by kkhai-ki          #+#    #+#             */
-/*   Updated: 2025/04/05 16:41:21 by kkhai-ki         ###   ########.fr       */
+/*   Updated: 2025/04/06 14:51:53 by kkhai-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,19 @@
 RobotomyRequestForm::RobotomyRequestForm()
 	: AForm("RobotomyRequestForm", "default_target", 72, 45)
 {
-	printMsg("Default Robotomy constructor called\n");
+	debugPrint("Default Robotomy constructor called\n");
 }
 
 RobotomyRequestForm::RobotomyRequestForm(const std::string &target)
 	: AForm("RobotomyRequestForm", target, 72, 45)
 {
-	printMsg("Robotomy constructor called\n");
+	debugPrint("Robotomy constructor called\n");
 }
 
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &src)
 	: AForm(src)
 {
-	printMsg("Robotomy copy constructor called\n");
+	debugPrint("Robotomy copy constructor called\n");
 }
 
 RobotomyRequestForm	&RobotomyRequestForm::operator=(const RobotomyRequestForm &src)
@@ -38,10 +38,21 @@ RobotomyRequestForm	&RobotomyRequestForm::operator=(const RobotomyRequestForm &s
 
 RobotomyRequestForm::~RobotomyRequestForm()
 {
-	printMsg("Robotomy destructor called\n");
+	debugPrint("Robotomy destructor called\n");
 }
 
 void	RobotomyRequestForm::action() const
 {
+	static bool			seeded = false;
 
+	if (!seeded)
+	{
+		std::srand(std::time(0));
+		seeded = true;
+	}
+	std::cout << "* drilling noises *\n";
+	if (rand() % 2 == 0)
+		std::cout << getTarget() << " has been robotomized successfully.\n";
+	else
+		std::cout << "Robotomy of " << getTarget() << " failed.\n";
 }

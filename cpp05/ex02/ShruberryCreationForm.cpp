@@ -6,7 +6,7 @@
 /*   By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 15:18:51 by kkhai-ki          #+#    #+#             */
-/*   Updated: 2025/04/05 15:35:03 by kkhai-ki         ###   ########.fr       */
+/*   Updated: 2025/04/06 14:35:29 by kkhai-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,19 @@
 ShruberryCreationForm::ShruberryCreationForm()
 	: AForm("ShruberryCreationForm","default_target", 145, 137)
 {
-	printMsg("Default Shruberry constructor called\n");
+	debugPrint("Default Shruberry constructor called\n");
 }
 
 ShruberryCreationForm::ShruberryCreationForm(const std::string &target)
 	: AForm("ShruberryCreationForm", target, 145, 137)
 {
-	printMsg("Shruberry constructor called\n");
+	debugPrint("Shruberry constructor called\n");
 }
 
 ShruberryCreationForm::ShruberryCreationForm(const ShruberryCreationForm &src)
 	: AForm(src)
 {
-	printMsg("Shruberry copy constructor called\n");
+	debugPrint("Shruberry copy constructor called\n");
 }
 
 ShruberryCreationForm	&ShruberryCreationForm::operator=(const ShruberryCreationForm &src)
@@ -38,7 +38,7 @@ ShruberryCreationForm	&ShruberryCreationForm::operator=(const ShruberryCreationF
 
 ShruberryCreationForm::~ShruberryCreationForm()
 {
-	printMsg("Shruberry destructor called\n");
+	debugPrint("Shruberry destructor called\n");
 }
 
 void	ShruberryCreationForm::action() const
@@ -56,5 +56,4 @@ void	ShruberryCreationForm::action() const
 			"         |||\\/\n"
 			"         |||||\n"
 			"   .....//||||\\....";
-	printMsg("ShruberryCreationForm was executed\n");
 }
