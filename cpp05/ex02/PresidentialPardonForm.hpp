@@ -6,9 +6,12 @@
 /*   By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 14:57:26 by kkhai-ki          #+#    #+#             */
-/*   Updated: 2025/04/07 14:01:30 by kkhai-ki         ###   ########.fr       */
+/*   Updated: 2025/04/07 14:41:01 by kkhai-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef PRESIDENTIALPARDONFORM_HPP
+# define PRESIDENTIALPARDONFORM_HPP
 
 # include "AForm.hpp"
 
@@ -23,3 +26,5 @@ class PresidentialPardonForm : public AForm
 
 		virtual void	action() const;
 };
+
+#endif

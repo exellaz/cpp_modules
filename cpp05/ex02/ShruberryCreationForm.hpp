@@ -6,9 +6,12 @@
 /*   By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 15:18:54 by kkhai-ki          #+#    #+#             */
-/*   Updated: 2025/03/28 14:23:07 by kkhai-ki         ###   ########.fr       */
+/*   Updated: 2025/04/07 14:40:14 by kkhai-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef SHRUBERRYCREATIONFORM_HPP
+# define SHRUBERRYCREATIONFORM_HPP
 
 # include "AForm.hpp"
 # include <sstream>
@@ -25,3 +28,5 @@ class ShruberryCreationForm : public AForm
 
 		virtual void	action() const;
 };
+
+#endif
