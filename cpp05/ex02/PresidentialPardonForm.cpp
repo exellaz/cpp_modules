@@ -6,7 +6,7 @@
 /*   By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 14:57:27 by kkhai-ki          #+#    #+#             */
-/*   Updated: 2025/04/07 14:04:08 by kkhai-ki         ###   ########.fr       */
+/*   Updated: 2025/04/07 14:52:10 by kkhai-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &src
 PresidentialPardonForm	&PresidentialPardonForm::operator=(const PresidentialPardonForm &src)
 {
 	AForm::operator=(src);
+	debugPrint("Presidential copy assignment operator called\n");
 	return *this;
 }
 

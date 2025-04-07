@@ -6,7 +6,7 @@
 /*   By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 15:29:53 by kkhai-ki          #+#    #+#             */
-/*   Updated: 2025/04/07 14:04:14 by kkhai-ki         ###   ########.fr       */
+/*   Updated: 2025/04/07 14:52:38 by kkhai-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &src)
 RobotomyRequestForm	&RobotomyRequestForm::operator=(const RobotomyRequestForm &src)
 {
 	AForm::operator=(src);
+	debugPrint("Robotomy copy assignment operator called\n");
 	return *this;
 }
 

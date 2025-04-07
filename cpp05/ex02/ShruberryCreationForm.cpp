@@ -6,7 +6,7 @@
 /*   By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 15:18:51 by kkhai-ki          #+#    #+#             */
-/*   Updated: 2025/04/06 14:35:29 by kkhai-ki         ###   ########.fr       */
+/*   Updated: 2025/04/07 14:53:04 by kkhai-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ ShruberryCreationForm::ShruberryCreationForm(const ShruberryCreationForm &src)
 ShruberryCreationForm	&ShruberryCreationForm::operator=(const ShruberryCreationForm &src)
 {
 	AForm::operator=(src);
+	debugPrint("Shruberry copy assignment operator called\n");
 	return *this;
 }
 
