@@ -6,7 +6,7 @@
 #    By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/24 09:25:26 by kkhai-ki          #+#    #+#              #
-#    Updated: 2025/04/06 13:40:53 by kkhai-ki         ###   ########.fr        #
+#    Updated: 2025/04/07 14:07:47 by kkhai-ki         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ NAME = forms
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -I. -std=c++98 -pedantic -g3
 
-SRC = main.cpp Bureaucrat.cpp AForm.cpp ShruberryCreationForm.cpp RobotomyRequestForm.cpp
+SRC = main.cpp Bureaucrat.cpp AForm.cpp ShruberryCreationForm.cpp \
+	RobotomyRequestForm.cpp PresidentialPardonForm.cpp
 
 OBJ = $(SRC:.cpp=.o)
 

@@ -6,13 +6,14 @@
 /*   By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 08:41:54 by kkhai-ki          #+#    #+#             */
-/*   Updated: 2025/04/06 14:56:43 by kkhai-ki         ###   ########.fr       */
+/*   Updated: 2025/04/07 14:08:11 by kkhai-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "AForm.hpp"
 #include "ShruberryCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
 #include <iostream>
 #include <sstream>
 
@@ -382,7 +383,129 @@ bool test_Robotomy_Action()
 
 		CHECK(true, (containsDrill && (containsSuccess || containsFailure)))
 	}
-	REPORT(result, "Robotomy action test");
+	REPORT(result, "Robotomy action method test");
+	return (result);
+}
+
+bool	test_Presidential_DefaultConstructor()
+{
+	std::ostringstream	errors;
+	bool				result = true;
+
+	{
+		const std::string	expectedName = "PresidentialPardonForm";
+		const std::string	expectedTarget = "default_target";
+		const bool			expectedStatus = false;
+		const int			expectedGradeToSign = 25;
+		const int			expectedGradeToExecute = 5;
+
+		PresidentialPardonForm	form;
+		std::string				name = form.getName();
+		std::string				target = form.getTarget();
+		bool					status = form.getSigned();
+		int						gradeToSign = form.getGradeToSign();
+		int						gradeToExecute = form.getGradeToExecute();
+
+		CHECK(expectedName, name);
+		CHECK(expectedTarget, target);
+		CHECK(expectedStatus, status);
+		CHECK(expectedGradeToSign, gradeToSign);
+		CHECK(expectedGradeToExecute, gradeToExecute);
+	}
+	REPORT(result, "Presidential default constructor test");
+	return (result);
+}
+
+bool	test_Presidential_ParameterizedConstructor()
+{
+	std::ostringstream	errors;
+	bool				result = true;
+
+	{
+		const std::string	expectedName = "PresidentialPardonForm";
+		const std::string	expectedTarget = "custom_target";
+		const bool			expectedStatus = false;
+		const int			expectedGradeToSign = 25;
+		const int			expectedGradeToExecute = 5;
+
+		PresidentialPardonForm	form(expectedTarget);
+		std::string				name = form.getName();
+		std::string				target = form.getTarget();
+		bool					status = form.getSigned();
+		int						gradeToSign = form.getGradeToSign();
+		int						gradeToExecute = form.getGradeToExecute();
+
+		CHECK(expectedName, name);
+		CHECK(expectedTarget, target);
+		CHECK(expectedStatus, status);
+		CHECK(expectedGradeToSign, gradeToSign);
+		CHECK(expectedGradeToExecute, gradeToExecute);
+	}
+	REPORT(result, "Presidential parameterized constructor test");
+	return (result);
+}
+
+bool	test_Presidential_CopyConstructor()
+{
+	std::ostringstream	errors;
+	bool				result = true;
+
+	{
+		const std::string	expectedTarget = "copy_target";
+
+		PresidentialPardonForm	original(expectedTarget);
+		PresidentialPardonForm	copy(original);
+
+		CHECK(original.getName(), copy.getName());
+		CHECK(original.getTarget(), copy.getTarget());
+		CHECK(original.getSigned(), copy.getSigned());
+		CHECK(original.getGradeToSign(), copy.getGradeToSign());
+		CHECK(original.getGradeToExecute(), copy.getGradeToExecute());
+	}
+	REPORT(result, "Presidential copy constructor test");
+	return (result);
+}
+
+bool	test_Presidential_AssignmentOperator()
+{
+	std::ostringstream	errors;
+	bool				result = true;
+
+	{
+		const std::string	expectedTarget = "assigned_target";
+
+		PresidentialPardonForm	original(expectedTarget);
+		PresidentialPardonForm	assigned("temp");
+		assigned = original;
+
+		CHECK(original.getSigned(), assigned.getSigned());
+	}
+	REPORT(result, "Presidential assignment operator test");
+	return (result);
+}
+
+bool	test_Presidential_Action()
+{
+	std::ostringstream	errors;
+	bool				result = true;
+
+	{
+		const std::string		target = "Arthur Dent";
+		PresidentialPardonForm	form(target);
+		std::ostringstream		captureOutput;
+		std::string				output;
+
+		std::cout.rdbuf(captureOutput.rdbuf());
+		form.action();
+		std::cout.rdbuf(originalCout);
+		output = captureOutput.str();
+
+		const std::string	expected = \
+			target + " has been pardoned by Zaphod Beeblebrox.\n";
+
+		CHECK(expected, output);
+	}
+	REPORT(result, "Presidential action method test");
 	return (result);
 }
 
@@ -403,7 +526,11 @@ void	run_tests()
 		test_Robotomy_CopyConstructor,
 		test_Robotomy_AssignmentOperator,
 		test_Robotomy_Action,
-		
+		test_Presidential_DefaultConstructor,
+		test_Presidential_ParameterizedConstructor,
+		test_Presidential_CopyConstructor,
+		test_Presidential_AssignmentOperator,
+		test_Presidential_Action,
 	};
 
 	int	num_tests = sizeof(tests) / sizeof(tests[0]);

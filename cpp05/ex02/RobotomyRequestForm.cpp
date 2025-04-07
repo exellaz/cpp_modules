@@ -6,7 +6,7 @@
 /*   By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 15:29:53 by kkhai-ki          #+#    #+#             */
-/*   Updated: 2025/04/06 14:51:53 by kkhai-ki         ###   ########.fr       */
+/*   Updated: 2025/04/07 14:04:14 by kkhai-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ RobotomyRequestForm::~RobotomyRequestForm()
 
 void	RobotomyRequestForm::action() const
 {
-	static bool			seeded = false;
+	static bool	seeded = false;
 
 	if (!seeded)
 	{
