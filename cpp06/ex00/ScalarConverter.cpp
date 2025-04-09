@@ -6,7 +6,7 @@
 /*   By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 14:43:16 by kkhai-ki          #+#    #+#             */
-/*   Updated: 2025/04/08 16:02:14 by kkhai-ki         ###   ########.fr       */
+/*   Updated: 2025/04/09 09:55:24 by kkhai-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,5 @@ ScalarConverter&	ScalarConverter::operator=(ScalarConverter& src)
 
 void	ScalarConverter::convert(const std::string& input)
 {
-	if (input.length() == 1 && (input[0] < '0' || input[0] > '9'))
-		std::cout << "It's a char!\n";
+	checkTypes(input);
 }
