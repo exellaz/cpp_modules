@@ -6,7 +6,7 @@
 /*   By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 08:19:51 by kkhai-ki          #+#    #+#             */
-/*   Updated: 2025/04/09 18:36:03 by kkhai-ki         ###   ########.fr       */
+/*   Updated: 2025/04/10 17:40:50 by kkhai-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,9 @@ static bool	isChar(const std::string& input)
 	return false;
 }
 
-static bool	isInt(const std::string& input)
+static bool	isInt(double num)
 {
-	char	*ptr;
-
-	errno = 0;
-	double	num = std::strtod(input.c_str(), &ptr);
-	std::cout << num << "\n";
-
 	if (errno == ERANGE || num > INT_MAX || num < INT_MIN)
-		return false;
-
-	std::string	remaining_str(ptr);
-	if (!remaining_str.empty())
 		return false;
 
 	if (num != std::floor(num))
@@ -40,35 +30,48 @@ static bool	isInt(const std::string& input)
 	return true;
 }
 
-static bool	isFloat(const std::string& input)
+static bool	isFloat(double num)
 {
-	char	*ptr;
-
-	errno = 0;
-	double	num = std::strtod(input.c_str(), &ptr);
-	std::cout << num << "\n";
-
-	if (errno == ERANGE || num > FLOAT_MAX || num < FLOAT_MIN)
+	if (errno == ERANGE || num > FLOAT_MAX || num < NEG_FLOAT_MAX)
 		return false;
 
-	std::string	remaining_str(ptr);
-	if (!remaining_str.empty())
-		return false;
+	return true;
+}
 
-	// if (num != std::floor(num))
-	// 	return false;
+static bool	isDouble(double num)
+{
+	if (errno == ERANGE || num > DOUBLE_MAX || num < NEG_DOUBLE_MAX)
+		return false;
 
 	return true;
 }
 
 bool	ScalarConverter::checkTypes(const std::string& input)
 {
+	char	*endptr;
+	double	num = std::strtod(input.c_str(), &endptr);
+	size_t	dot = input.find('.');
+	size_t	f = input.find('f');
+
+	if (dot && !isdigit(input[dot + 1]))
+		return false;
+	if (*endptr == 'f')
+		endptr++;
+	for (; *endptr != '\0'; endptr++) {
+		if (!std::isspace(*endptr))
+			return false;
+	}
+
 	if (isChar(input))
 		std::cout << "It's a char!\n";
-	if (isInt(input))
-		std::cout << "It's an int!\n";
-	if (isFloat(input))
+	else if (dot != std::string::npos && f != std::string::npos && isFloat(num))
 		std::cout << "It's a float\n";
+	else if (dot != std::string::npos && isDouble(num))
+		std::cout << "It's a double\n";
+	else if (isInt(num))
+		std::cout << "It's an int!\n";
+	else
+		std::cout << "Impossible\n";
 
 	return true;
 }
