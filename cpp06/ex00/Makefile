@@ -6,7 +6,7 @@
 #    By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/08 14:12:18 by kkhai-ki          #+#    #+#              #
-#    Updated: 2025/04/09 08:22:59 by kkhai-ki         ###   ########.fr        #
+#    Updated: 2025/04/10 18:04:37 by kkhai-ki         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ NAME = convert
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -I. -std=c++98 -pedantic -g3
 
-SRC = main.cpp ScalarConverter.cpp checkTypes.cpp
+SRC = main.cpp ScalarConverter.cpp checkTypes.cpp convertTypes.cpp
 
 OBJ = $(SRC:.cpp=.o)
 

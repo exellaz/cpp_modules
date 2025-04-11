@@ -6,7 +6,7 @@
 /*   By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 14:43:18 by kkhai-ki          #+#    #+#             */
-/*   Updated: 2025/04/10 17:33:38 by kkhai-ki         ###   ########.fr       */
+/*   Updated: 2025/04/11 18:09:56 by kkhai-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,13 @@
 # include <iostream>
 # include <string>
 # include <cstdlib>
+# include <cstdio>
+# include <cstring>
 # include <limits>
 # include <cerrno>
 # include <cmath>
+# include <sstream>
+# include <iomanip>
 
 # define INT_MIN std::numeric_limits<int>::min() //-2147483648
 # define INT_MAX std::numeric_limits<int>::max() //2147483647
@@ -28,6 +32,14 @@
 # define NEG_DOUBLE_MAX -std::numeric_limits<double>::max()//-1.79769e+308
 # define DOUBLE_MIN std::numeric_limits<double>::min() //2.22507e-308
 # define DOUBLE_MAX std::numeric_limits<double>::max() //1.79769e+308
+
+enum e_type {
+	CHAR,
+	INT,
+	FLOAT,
+	DOUBLE,
+	NONE
+};
 
 class ScalarConverter
 {
@@ -40,7 +52,11 @@ class ScalarConverter
 		static void	convert(const std::string& input);
 
 	private:
-		static bool	checkTypes(const std::string& input);
 };
 
+e_type	checkTypes(const std::string& input);
+void	convertChar(const std::string& input);
+void	convertInt(const std::string& input);
+void	convertFloat(const std::string& input);
+void	convertDouble(const std::string& input);
 #endif
