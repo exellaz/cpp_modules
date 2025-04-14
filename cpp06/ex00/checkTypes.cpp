@@ -6,7 +6,7 @@
 /*   By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 08:19:51 by kkhai-ki          #+#    #+#             */
-/*   Updated: 2025/04/14 10:22:22 by kkhai-ki         ###   ########.fr       */
+/*   Updated: 2025/04/14 10:41:08 by kkhai-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,9 @@ static bool	checkInput(const std::string& input, char *endptr)
 	}
 	if (*endptr != 'f' && *endptr != '\0')
 		return false;
-	if (*endptr == 'f' && !std::isdigit(*(endptr - 1)))
+	if (*endptr == 'f' && (!std::isdigit(*(endptr - 1)) || *(endptr + 1) != '\0'))
 		return false;
+	std::cout << "endptr: " << *(endptr + 1) << "\n";
 	return true;
 }
 
