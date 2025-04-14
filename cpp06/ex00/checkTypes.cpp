@@ -6,7 +6,7 @@
 /*   By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 08:19:51 by kkhai-ki          #+#    #+#             */
-/*   Updated: 2025/04/14 10:56:51 by kkhai-ki         ###   ########.fr       */
+/*   Updated: 2025/04/14 13:59:56 by kkhai-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ e_type	checkTypes(const std::string& input)
 	if (!checkInput(input, endptr))
 		return NONE;
 
-	if (f == std::string::npos && isInt(num))
+	if (dot == std::string::npos && f == std::string::npos && isInt(num))
 		return INT;
 	else if (dot != std::string::npos && f != std::string::npos && isFloat(num))
 		return FLOAT;
