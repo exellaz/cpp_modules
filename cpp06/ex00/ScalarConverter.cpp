@@ -6,7 +6,7 @@
 /*   By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 14:43:16 by kkhai-ki          #+#    #+#             */
-/*   Updated: 2025/04/14 09:19:59 by kkhai-ki         ###   ########.fr       */
+/*   Updated: 2025/04/14 10:20:54 by kkhai-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,10 @@ ScalarConverter&	ScalarConverter::operator=(ScalarConverter& src)
 {
 	(void)src;
 	return *this;
+}
+
+ScalarConverter::~ScalarConverter()
+{
 }
 
 size_t	getPrecision(const std::string& input)
@@ -86,6 +90,6 @@ void	ScalarConverter::convert(const std::string& input)
 			convertPseudoLiterals(trimmedInput);
 			break;
 		default:
-			break;
+			errNoConversion();
 	}
 }

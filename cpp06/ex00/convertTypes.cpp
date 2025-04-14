@@ -6,7 +6,7 @@
 /*   By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 17:55:59 by kkhai-ki          #+#    #+#             */
-/*   Updated: 2025/04/14 09:19:16 by kkhai-ki         ###   ########.fr       */
+/*   Updated: 2025/04/14 09:35:49 by kkhai-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,14 @@ void	convertChar(const std::string& input)
 	char	c = input[0];
 
 	std::cout << "CHAR\n";
-	std::cout << "char: '";
+	std::cout << "char: ";
 	if (std::isprint(c))
-		std::cout << c << "'\n";
+		std::cout << "'" << c << "'\n";
+	else
+		std::cout << "Non displayable\n";
 	std::cout << "int: " << static_cast<int>(c) << "\n";
 	std::cout << "float: " << static_cast<float>(c) << ".0f\n";
 	std::cout << "double: " << static_cast<double>(c) << ".0\n";
-}
-
-bool isScientific(double num)
-{
-	std::ostringstream stream;
-	stream << num;
-	std::string str = stream.str();
-	return str.find('e') != std::string::npos || str.find('E') != std::string::npos;
 }
 
 void	convertInt(const std::string& input)
@@ -135,4 +129,9 @@ void	convertPseudoLiterals(const std::string& input)
 		std::cout << "float: inff\n" << "double: inf\n";
 	else
 		std::cout << "float: -inff\n" << "double: -inf\n";
+}
+
+void	errNoConversion()
+{
+	std::cerr << "No valid conversion found.\n";
 }

@@ -6,7 +6,7 @@
 /*   By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 14:43:18 by kkhai-ki          #+#    #+#             */
-/*   Updated: 2025/04/14 08:56:32 by kkhai-ki         ###   ########.fr       */
+/*   Updated: 2025/04/14 09:35:24 by kkhai-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,6 @@ void	convertInt(const std::string& input);
 void	convertFloat(const std::string& input);
 void	convertDouble(const std::string& input);
 void	convertPseudoLiterals(const std::string& input);
+void	errNoConversion();
 
 #endif
