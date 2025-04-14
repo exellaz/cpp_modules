@@ -6,7 +6,7 @@
 /*   By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 16:42:42 by kkhai-ki          #+#    #+#             */
-/*   Updated: 2025/04/14 18:16:57 by kkhai-ki         ###   ########.fr       */
+/*   Updated: 2025/04/14 18:18:28 by kkhai-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,6 @@ int	main()
 	Base*	ptr = generate();
 	identify(ptr);
 	identify(&(*ptr));
+	delete ptr;
 	return 0;
 }
