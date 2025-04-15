@@ -35,6 +35,7 @@
 **/.vscode
 
 # Program Executables
+a.out
 megaphone
 phonebook
 account
