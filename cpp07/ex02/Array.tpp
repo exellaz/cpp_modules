@@ -6,11 +6,14 @@
 /*   By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 10:16:49 by kkhai-ki          #+#    #+#             */
-/*   Updated: 2025/04/15 15:59:41 by kkhai-ki         ###   ########.fr       */
+/*   Updated: 2025/04/16 21:37:45 by kkhai-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Array.hpp"
+#ifndef ARRAY_TPP
+# define ARRAY_TPP
+
+# include "Array.hpp"
 
 template<typename T>
 Array<T>::Array()
@@ -38,7 +41,7 @@ Array<T>::Array(const Array& src)
 template<typename T>
 Array<T>&	Array<T>::operator=(const Array& src)
 {
-	if (this != src) {
+	if (this != &src) {
 		delete [] _array;
 		_size = src._size;
 		_array = new T[_size];
@@ -51,7 +54,8 @@ Array<T>&	Array<T>::operator=(const Array& src)
 template<typename T>
 T&	Array<T>::operator[](unsigned int i)
 {
-	// if (i >= _size)
+	if (i >= _size)
+		throw Array<T>::OutOfBoundsException();
 	return _array[i];
 }
 
@@ -67,4 +71,10 @@ unsigned int	Array<T>::size() const
 	return _size;
 }
 
+template<typename T>
+const char*	Array<T>::OutOfBoundsException::what() const throw()
+{
+	return "Index out of bounds";
+}
 
+#endif
