@@ -6,7 +6,7 @@
 /*   By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 13:49:24 by kkhai-ki          #+#    #+#             */
-/*   Updated: 2025/04/18 23:26:17 by kkhai-ki         ###   ########.fr       */
+/*   Updated: 2025/04/21 14:46:13 by kkhai-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,19 @@ void	test_easyfind(T& container, int needle, std::string name)
 	catch (std::exception &e) {
 		std::cout << "Could not find number\n";
 	}
+	printContainer(container);
 }
 
 template<typename T>
 void	printContainer(T& container)
 {
+	typename T::iterator	lastComma = --container.end();
+
+	std::cout << "{";
 	for (typename T::iterator it = container.begin(); it != container.end(); ++it) {
 		std::cout << *it;
-		if (it != container.end())
+		if (it != lastComma)
+			std::cout << ",";
 	}
+	std::cout << "}\n";
 }
