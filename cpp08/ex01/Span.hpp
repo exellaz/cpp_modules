@@ -6,7 +6,7 @@
 /*   By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 14:57:53 by kkhai-ki          #+#    #+#             */
-/*   Updated: 2025/04/23 14:43:56 by kkhai-ki         ###   ########.fr       */
+/*   Updated: 2025/04/23 15:06:36 by kkhai-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ class Span
 		void	addNumber(int number);
 		Span&	operator=(const Span& src);
 
+		int					longestSpan();
 		std::vector<int>	getNumbers();
 		unsigned int		getMaxSize();
 

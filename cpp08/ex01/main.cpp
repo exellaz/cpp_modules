@@ -6,7 +6,7 @@
 /*   By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 14:56:43 by kkhai-ki          #+#    #+#             */
-/*   Updated: 2025/04/23 14:45:05 by kkhai-ki         ###   ########.fr       */
+/*   Updated: 2025/04/23 20:46:25 by kkhai-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ int	main()
 	span.addNumber(5);
 	// span.addNumber(6);
 
-	std::cout << spanA.getMaxSize();
+	std::cout << spanA.getMaxSize() << "\n";
+	std::cout << span.longestSpan() << "\n";
 
 	return 0;
 }
