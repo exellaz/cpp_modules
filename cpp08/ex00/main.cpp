@@ -6,7 +6,7 @@
 /*   By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 21:36:57 by kkhai-ki          #+#    #+#             */
-/*   Updated: 2025/04/21 14:46:07 by kkhai-ki         ###   ########.fr       */
+/*   Updated: 2025/04/24 14:29:57 by kkhai-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void	test_easyfind_List()
 {
 	std::list<int>	l;
 
+	srand(std::time(0));
 	for (int i = 0; i < 10; ++i)
 		l.push_back(rand() % 10);
 

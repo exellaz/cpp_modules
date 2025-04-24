@@ -6,7 +6,7 @@
 /*   By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 14:57:50 by kkhai-ki          #+#    #+#             */
-/*   Updated: 2025/04/23 20:03:23 by kkhai-ki         ###   ########.fr       */
+/*   Updated: 2025/04/24 14:34:40 by kkhai-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	Span::addNumber(int number)
 	_numbers.push_back(number);
 }
 
-int		Span::longestSpan()
+int	Span::longestSpan()
 {
 	if (_numbers.size() < 2)
 		throw std::logic_error("Not enough numbers to find a span");
@@ -60,12 +60,29 @@ int		Span::longestSpan()
 	return *maxIt - *minIt;
 }
 
-std::vector<int>	Span::getNumbers()
+int	Span::shortestSpan()
+{
+	if (_numbers.size() < 2)
+		throw std::logic_error("Not enough numbers to find a span");
+
+	std::vector<int>	sorted = _numbers;
+	std::sort(sorted.begin(), sorted.end());
+
+	int	minDiff = std::abs(sorted[1] - sorted[0]);
+	for (size_t i = 1; i < sorted.size() - 1; ++i) {
+		int	diff = std::abs(sorted[i + 1] - sorted[i]);
+		if (diff < minDiff)
+			minDiff = diff;
+	}
+	return minDiff;
+}
+
+std::vector<int>&	Span::getNumbers()
 {
 	return _numbers;
 }
 
-unsigned int	Span::getMaxSize()
+unsigned int	Span::getMaxSize() const
 {
 	return _maxSize;
 }
