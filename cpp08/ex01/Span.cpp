@@ -6,7 +6,7 @@
 /*   By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 14:57:50 by kkhai-ki          #+#    #+#             */
-/*   Updated: 2025/04/24 14:34:40 by kkhai-ki         ###   ########.fr       */
+/*   Updated: 2025/04/25 13:11:46 by kkhai-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ Span&	Span::operator=(const Span& src)
 void	Span::addNumber(int number)
 {
 	if (_numbers.size() >= _maxSize)
-		throw std::out_of_range("Error: Max size exceeded");
+		throw std::out_of_range("Max size exceeded");
 
 	_numbers.push_back(number);
 }
@@ -54,8 +54,8 @@ int	Span::longestSpan()
 	if (_numbers.size() < 2)
 		throw std::logic_error("Not enough numbers to find a span");
 
-	std::vector<int>::const_iterator	minIt = std::min_element(_numbers.begin(), _numbers.end());
-	std::vector<int>::const_iterator	maxIt = std::max_element(_numbers.begin(), _numbers.end());
+	std::vector<int>::const_iterator minIt = std::min_element(_numbers.begin(), _numbers.end());
+	std::vector<int>::const_iterator maxIt = std::max_element(_numbers.begin(), _numbers.end());
 
 	return *maxIt - *minIt;
 }
@@ -65,7 +65,7 @@ int	Span::shortestSpan()
 	if (_numbers.size() < 2)
 		throw std::logic_error("Not enough numbers to find a span");
 
-	std::vector<int>	sorted = _numbers;
+	std::vector<int> sorted = _numbers;
 	std::sort(sorted.begin(), sorted.end());
 
 	int	minDiff = std::abs(sorted[1] - sorted[0]);
