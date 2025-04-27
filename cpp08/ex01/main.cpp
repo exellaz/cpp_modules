@@ -6,18 +6,18 @@
 /*   By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 14:56:43 by kkhai-ki          #+#    #+#             */
-/*   Updated: 2025/04/25 14:37:40 by kkhai-ki         ###   ########.fr       */
+/*   Updated: 2025/04/27 14:25:48 by kkhai-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Span.hpp"
 #include <ctime>
 
-# define GREEN   "\033[32m"
-# define RED     "\033[31m"
-# define YELLOW  "\033[33m"
-# define BLUE    "\033[34m"
-# define RESET   "\033[0m"
+#define GREEN   "\033[32m"
+#define RED     "\033[31m"
+#define YELLOW  "\033[33m"
+#define BLUE    "\033[34m"
+#define RESET   "\033[0m"
 
 template<typename T>
 void	printContainer(T& container)
