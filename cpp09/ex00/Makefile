@@ -8,7 +8,7 @@ NAME = btc
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -I. -std=c++98 -pedantic -g3
 
-SRC = main.cpp
+SRC = main.cpp BitcoinExchange.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
