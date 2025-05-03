@@ -11,8 +11,9 @@ BitcoinExchange::~BitcoinExchange()
 
 }
 
-bool BitcoinExchange::isValidDate(const std::string& date)
+bool BitcoinExchange::isValidDate(std::string& date)
 {
+    trim(date);
     if (date.length() != 10)
         return false;
 
@@ -48,7 +49,6 @@ bool BitcoinExchange::parseLine(const std::string& line, std::string& date, floa
     std::istringstream ss(line);
     std::getline(ss, date, ',');
     if (!isValidDate(date)) {
-        std::cout << "Not a valid date\n";
         return false;
     }
 
@@ -64,24 +64,30 @@ bool BitcoinExchange::parseLine(const std::string& line, std::string& date, floa
 
 std::map<std::string, float> BitcoinExchange::loadDatabase(const std::string& filename)
 {
-    std::ifstream file(filename.c_str());
     std::map<std::string, float> database;
+    std::ifstream file(filename.c_str());
 
     if (!file.is_open()) {
         std::cerr << "Error: could not open database file\n";
         return database;
     }
 
+    std::string header;
+    std::getline(file, header);
+    if (header != "date,exchange_rate") {
+        std::cerr << "Error: incorrect header\n";
+        return database;
+    }
+
     std::string line;
-    std::getline(file, line); // Skip file header
     while (std::getline(file, line)) {
         std::string date;
         float price;
-        if (!parseLine(line, date, price))
-            std::cerr << "Error: " << line << "\n";
+        if (!parseLine(line, date, price)) {
+            std::cerr << "Error: invalid line format: `" << line << "`\n";
+            continue;
+        }
         database[date] = price;
-        // std::cout << "Date: " << date << " | Price: " << price << "\n";
-        //Parse line function to get date and price
     }
     return database;
 }
