@@ -6,7 +6,7 @@ ORANGE = \033[0;38;5;166m
 NAME = btc
 
 CC = c++
-CFLAGS = -Wall -Wextra -Werror -I. -std=c++98 -pedantic -g3
+CFLAGS = -Wall -Wextra -Werror -I. -std=c++98 -pedantic -g3 -fsanitize=address
 
 SRC = main.cpp BitcoinExchange.cpp
 

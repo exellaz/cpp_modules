@@ -22,6 +22,10 @@ class BitcoinExchange
     private:
         static bool isValidDate(std::string& date);
         static bool parseLine(const std::string& line, std::string& date, float& price);
+        static void trim(std::string& str);
+        static bool validateValue(std::string& valueStr, float* value);
+        static std::map<std::string, float>::iterator findClosestDate(
+            std::map<std::string, float>& database, std::string& target);
 };
 
 #endif
