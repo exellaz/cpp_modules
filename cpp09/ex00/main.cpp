@@ -8,7 +8,7 @@ int main(int argc, char *argv[])
     }
 
     BitcoinExchange btc;
-    btc._database = btc.loadDatabase("data.csv");
+    btc.loadDatabase("data.csv");
     btc.processInput(argv[1]);
     return 0;
 }

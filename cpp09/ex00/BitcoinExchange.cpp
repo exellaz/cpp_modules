@@ -9,21 +9,34 @@ BitcoinExchange::~BitcoinExchange()
 {
 }
 
-std::map<std::string, float> BitcoinExchange::loadDatabase(const std::string& filename)
+BitcoinExchange::BitcoinExchange(const BitcoinExchange& src)
+    : _database(src._database)
+{
+}
+
+BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& src)
+{
+    if (this != &src)
+        this->_database = src._database;
+
+    return *this;
+}
+
+void BitcoinExchange::loadDatabase(const std::string& filename)
 {
     std::map<std::string, float> database;
 
     std::ifstream file(filename.c_str());
     if (!file.is_open()) {
         std::cerr << "Error: could not open database file\n";
-        return database;
+        return ;
     }
 
     std::string header;
     std::getline(file, header);
     if (header != "date,exchange_rate") {
         std::cerr << "Error: incorrect header\n";
-        return database;
+        return ;
     }
 
     std::string line;
@@ -36,7 +49,7 @@ std::map<std::string, float> BitcoinExchange::loadDatabase(const std::string& fi
         }
         database[date] = price;
     }
-    return database;
+    _database = database;
 }
 
 void BitcoinExchange::processInput(const std::string& filename)
