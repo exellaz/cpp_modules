@@ -4,6 +4,7 @@
 # include <stack>
 # include <iostream>
 # include <sstream>
+# include <limits>
 
 class RPN
 {
@@ -14,9 +15,32 @@ class RPN
         ~RPN();
 
         void calculate(const std::string& expression);
-        std::stack<int> _stack;
+        void doOperation(const char c);
+
+        class DivisionByZeroException : public std::exception
+        {
+            public:
+                virtual const char* what() const throw();
+        };
+        class IntegerOverflowException : public std::exception
+        {
+            public:
+                virtual const char* what() const throw();
+        };
+        class InvalidOperandException : public std::exception
+        {
+            public:
+                virtual const char* what() const throw();
+        };
+        class InvalidExpressionException : public std::exception
+        {
+            public:
+                virtual const char* what() const throw();
+        };
+
 
     private:
+        std::stack<int> _stack;
 };
 
 #endif

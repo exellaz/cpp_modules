@@ -8,12 +8,11 @@ int main(int argc, char *argv[])
     }
 
     RPN rpn;
-    rpn.calculate(argv[1]);
-
-    while (!rpn._stack.empty()) {
-        std::cout << rpn._stack.top();
-        rpn._stack.pop();
+    try {
+        rpn.calculate(argv[1]);
     }
-
+    catch (const std::exception& e) {
+        std::cerr << e.what() << "\n";
+    }
     return 0;
 }
