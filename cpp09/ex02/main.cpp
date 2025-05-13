@@ -6,5 +6,9 @@ int main(int ac, char *av[])
         std::cout << "Usage: ./PmergeMe <positive integers> ...\n";
         return 1;
     }
+    PmergeMe PmergeMe;
+    PmergeMe.initVector(++av);
+    PmergeMe.printContainer(PmergeMe._vector);
 
+    return 0;
 }
