@@ -9,6 +9,7 @@ int main(int ac, char *av[])
     PmergeMe PmergeMe;
     PmergeMe.initVector(++av);
     PmergeMe.printContainer(PmergeMe._vector);
-
+    PmergeMe.mergeInsertionSort(PmergeMe._vector, 1);
+    PmergeMe.printContainer(PmergeMe._vector);
     return 0;
 }

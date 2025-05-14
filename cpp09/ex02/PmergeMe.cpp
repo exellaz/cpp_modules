@@ -43,6 +43,11 @@ void PmergeMe::initVector(char* av[])
     }
 }
 
+bool compare(int a, int b)
+{
+    return a < b;
+}
+
 PmergeMe::PmergeMe()
 {
 }
