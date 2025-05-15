@@ -98,7 +98,33 @@ template<typename T> void PmergeMe::mergeInsertionSort(T& container, int depth)
     mergeInsertionSort(container, depth * 2);
 
     printContainer(container);
+    std::cout << "Depth: " << depth << "\n";
 
+    std::vector<Iterator> main;
+    std::vector<Iterator> pend;
+
+    std::cout << "b1: " << *(next(container.begin(), depth - 1)) << "\n";
+    main.push_back(next(container.begin(), depth - 1)); // Push b1
+    std::cout << "a1: " << *(next(container.begin(), depth * 2 - 1)) << "\n";
+    main.push_back(next(container.begin(), depth * 2 - 1)); // Push a1
+
+    for (int i = 3; i <= numOfGroups; i++) {
+        if (i % 2 == 1)
+            pend.push_back(next(container.begin(), depth * i - 1));
+        else
+            main.push_back(next(container.begin(), depth * i - 1));
+    }
+
+    std::cout << "Pend: " ;
+    for (int i = 0; i < static_cast<int>(pend.size()); i++) {
+        std::cout << *(pend[i]) << " ";
+    }
+    std::cout << "\n";
+    std::cout << "Main: " ;
+    for (int i = 0; i < static_cast<int>(main.size()); i++) {
+        std::cout << *(main[i]) << " ";
+    }
+    std::cout << "\n";
 }
 
 #endif
