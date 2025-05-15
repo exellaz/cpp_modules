@@ -43,11 +43,6 @@ void PmergeMe::initVector(char* av[])
     }
 }
 
-bool compare(int a, int b)
-{
-    return a < b;
-}
-
 PmergeMe::PmergeMe()
 {
 }
@@ -68,4 +63,9 @@ PmergeMe& PmergeMe::operator=(const PmergeMe& src)
     }
 
     return *this;
+}
+
+int PmergeMe::jacobsthalNumber(int n)
+{
+    return round((std::pow(2, n + 1) + std::pow(-1, n)) / 3);
 }
