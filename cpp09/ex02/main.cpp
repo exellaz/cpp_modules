@@ -16,8 +16,9 @@ int main(int ac, char *av[])
     // std::advance(It, -2);
     // std::cout << "After neg advance: " << *It << "\n";
 
-    PmergeMe.printContainer(PmergeMe._vector);
+    // PmergeMe.printContainer(PmergeMe._vector);
     PmergeMe.mergeInsertionSort(PmergeMe._vector, 1);
     PmergeMe.printContainer(PmergeMe._vector);
+
     return 0;
 }
