@@ -20,8 +20,8 @@ $(NAME): $(OBJ)
 %.o: %.cpp
 	$(CC) $(CFLAGS) -c $< -o $@
 
-debug: CFLAGS += -D DEBUG=1
-debug: fclean $(OBJ)
+notruncate: CFLAGS += -D TRUNCATE=0
+notruncate: fclean $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 
 clean:

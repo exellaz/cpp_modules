@@ -1,6 +1,10 @@
 #ifndef PMERGEME_HPP
 # define PMERGEME_HPP
 
+# ifndef TRUNCATE
+#  define TRUNCATE 1
+# endif
+
 # include <iostream>
 # include <vector>
 # include <limits>
@@ -16,16 +20,28 @@
 class PmergeMe
 {
     public:
-        std::vector<int> _vector;
-        std::list<int> _list;
         PmergeMe();
         ~PmergeMe();
         PmergeMe& operator=(const PmergeMe& src);
         PmergeMe(const PmergeMe& src);
 
+        void compareContainers(int ac, char **av);
+
+        template<typename T>
+        static bool comp(T a, T b);
+
+    private:
+        std::vector<int> _vector;
+        std::list<int> _list;
+        static int _comparisons;
+
+        void printBeforeSort(int ac, char **av);
+        double getMicroseconds();
         bool isPositiveInteger(const std::string& str);
         void trim(std::string& str);
         int jacobsthalNumber(int n);
+        long getTheoreticalMax(long n);
+
         template<typename Container>
         void initIntContainer(Container& container, char* av[]);
 
@@ -48,20 +64,14 @@ class PmergeMe
         void reconstructSortedContainer(T& container, ItVec& main, int groupSize);
 
         template<typename T>
+        void printContents(T& container);
+
+        template<typename T>
         void swapElements(T it, int groupSize);
 
         template<typename T>
         T next(T it, int steps);
-
-        template<typename T>
-        static bool compare(T a, T b);
-
-        private:
-
 };
-
-template<typename T>
-void printContainer(T& container);
 
 # include "PmergeMe.tpp"
 

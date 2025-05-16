@@ -1,7 +1,7 @@
 #include "PmergeMe.hpp"
 
 template<typename Container>
-void PmergeMe::initIntContainer(Container& container,char* av[])
+void PmergeMe::initIntContainer(Container& container, char* av[])
 {
     std::set<int> seen;
 
@@ -9,22 +9,17 @@ void PmergeMe::initIntContainer(Container& container,char* av[])
         std::string numStr(*av);
         trim(numStr);
 
-        if (!isPositiveInteger(numStr)) {
-            std::cerr << "Error: not a positive integer\n";
-            return;
-        }
+        if (!isPositiveInteger(numStr))
+            throw std::logic_error("not a positive integer");
 
         long longInt = std::strtol(numStr.c_str(), NULL, 10);
-        if (longInt < INT_MIN || longInt > INT_MAX) {
-            std::cerr << "Error: integer overflow\n";
-            return;
-        }
+        if (longInt < INT_MIN || longInt > INT_MAX)
+            throw std::logic_error("integer overflow");
 
         int value = static_cast<int>(longInt);
-        if (seen.find(value) != seen.end()) {
-            std::cerr << "Error: duplicate number " << value << "\n";
-            return;
-        }
+        if (seen.find(value) != seen.end())
+            throw std::logic_error("contains duplicate number");
+
         seen.insert(value);
         container.push_back(value);
         av++;
@@ -61,7 +56,7 @@ void PmergeMe::sortGroups(T& container, Iterator& end, int groupSize)
     for (Iterator it = container.begin(); it != end; std::advance(it, step)) {
         Iterator a = next(it, groupSize - 1);
         Iterator b = next(it, groupSize * 2 - 1);
-        if (!compare(a, b)) // Number of comparisons is always once per group for each recursion
+        if (!comp(a, b)) // Number of comparisons is always once per group for each recursion
             swapElements(a, groupSize);
     }
 }
@@ -100,7 +95,7 @@ void PmergeMe::insertJacobsthalGroups(ItVec& main, ItVec& pend)
         int offset = 0;
         for (int nbrOfInsertions = 0; nbrOfInsertions < jacobsthalDiff; nbrOfInsertions++) {
             //upper_bound uses Binary Insertion, passing it the compare function overloads the comparator
-            typename ItVec::iterator idx = std::upper_bound(main.begin(), boundIt, *pendIt, compare<Iterator>);
+            typename ItVec::iterator idx = std::upper_bound(main.begin(), boundIt, *pendIt, comp<Iterator>);
             typename ItVec::iterator inserted = main.insert(idx, *pendIt);
             pend.erase(pendIt); // Remove the inserted iterator from pend
             std::advance(pendIt, -1); // Move the iterator backwards
@@ -118,7 +113,7 @@ void PmergeMe::insertRemainingPend(ItVec& main, ItVec& pend, bool isOdd)
     for (int i = pend.size() - 1; i >= 0; i--) {
         typename std::vector<Iterator>::iterator currPend = next(pend.begin(), i);
         typename std::vector<Iterator>::iterator currBound = next(main.begin(), main.size() - pend.size() + i + isOdd);
-        typename std::vector<Iterator>::iterator idx = std::upper_bound(main.begin(), currBound, *currPend, compare<Iterator>);
+        typename std::vector<Iterator>::iterator idx = std::upper_bound(main.begin(), currBound, *currPend, comp<Iterator>);
         main.insert(idx, *currPend);
     }
 }
@@ -139,17 +134,23 @@ void PmergeMe::reconstructSortedContainer(T& container, ItVec& main, int groupSi
 }
 
 template<typename T>
-void printContainer(T& container)
+void PmergeMe::printContents(T& container)
 {
-    typename T::iterator lastComma = --container.end();
+    typename T::iterator end = container.end();
+    if (TRUNCATE && container.size() > 10)
+        end = next(container.begin(), 4);
 
-    std::cout << "{";
-    for (typename T::iterator it = container.begin(); it != container.end(); ++it) {
+    typename T::iterator it = container.begin();
+    while (it != end) {
         std::cout << *it;
-        if (it != lastComma)
-            std::cout << ",";
+        if (it != end)
+            std::cout << " ";
+        ++it;
     }
-    std::cout << "}\n";
+
+    if (TRUNCATE && end != container.end())
+        std::cout << "[...]";
+    std::cout << std::endl;
 }
 
 template<typename T>
@@ -171,7 +172,8 @@ T PmergeMe::next(T it, int steps)
 }
 
 template<typename T>
-bool PmergeMe::compare(T a, T b)
+bool PmergeMe::comp(T a, T b)
 {
+    _comparisons++;
     return *a < *b;
 }
