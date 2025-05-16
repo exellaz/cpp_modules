@@ -24,25 +24,6 @@ bool PmergeMe::isPositiveInteger(const std::string& str)
     return true;
 }
 
-void PmergeMe::initVector(char* av[])
-{
-    while (*av) {
-        std::string numStr(*av);
-        trim(numStr);
-        if (!isPositiveInteger(numStr)) {
-            std::cerr << "Error: not a positive integer\n";
-            return;
-        }
-        long longInt = std::strtol(numStr.c_str(), NULL, 10);
-        if (longInt < INT_MIN || longInt > INT_MAX) {
-            std::cerr << "Error: integer overflow\n";
-            return;
-        }
-        _vector.push_back(static_cast<int>(longInt));
-        av++;
-    }
-}
-
 PmergeMe::PmergeMe()
 {
 }

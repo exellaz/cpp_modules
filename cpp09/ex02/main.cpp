@@ -8,17 +8,12 @@ int main(int ac, char *av[])
     }
 
     PmergeMe PmergeMe;
-    PmergeMe.initVector(++av);
-
-    // std::vector<int>::iterator It = PmergeMe._vector.begin();
-    // std::advance(It, 4);
-    // std::cout << "After advance: " << *It << "\n";
-    // std::advance(It, -2);
-    // std::cout << "After neg advance: " << *It << "\n";
-
-    // PmergeMe.printContainer(PmergeMe._vector);
+    PmergeMe.initIntContainer(PmergeMe._vector, ++av);
+    PmergeMe.initIntContainer(PmergeMe._list, av);
     PmergeMe.mergeInsertionSort(PmergeMe._vector, 1);
-    PmergeMe.printContainer(PmergeMe._vector);
+    PmergeMe.mergeInsertionSort(PmergeMe._list, 1);
+    printContainer(PmergeMe._vector);
+    printContainer(PmergeMe._list);
 
     return 0;
 }

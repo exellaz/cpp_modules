@@ -7,6 +7,8 @@
 # include <cstdlib>
 # include <cmath>
 # include <algorithm>
+# include <set>
+# include <list>
 
 # define INT_MIN std::numeric_limits<int>::min()
 # define INT_MAX std::numeric_limits<int>::max()
@@ -15,6 +17,7 @@ class PmergeMe
 {
     public:
         std::vector<int> _vector;
+        std::list<int> _list;
         PmergeMe();
         ~PmergeMe();
         PmergeMe& operator=(const PmergeMe& src);
@@ -22,8 +25,9 @@ class PmergeMe
 
         bool isPositiveInteger(const std::string& str);
         void trim(std::string& str);
-        void initVector(char* av[]);
         int jacobsthalNumber(int n);
+        template<typename Container>
+        void initIntContainer(Container& container, char* av[]);
 
         template<typename T>
         void mergeInsertionSort(T& container, int groupSize);
@@ -50,7 +54,7 @@ class PmergeMe
         T next(T it, int steps);
 
         template<typename T>
-        bool compare(T a, T b);
+        static bool compare(T a, T b);
 
         private:
 

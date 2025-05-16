@@ -1,5 +1,36 @@
 #include "PmergeMe.hpp"
 
+template<typename Container>
+void PmergeMe::initIntContainer(Container& container,char* av[])
+{
+    std::set<int> seen;
+
+    while (*av) {
+        std::string numStr(*av);
+        trim(numStr);
+
+        if (!isPositiveInteger(numStr)) {
+            std::cerr << "Error: not a positive integer\n";
+            return;
+        }
+
+        long longInt = std::strtol(numStr.c_str(), NULL, 10);
+        if (longInt < INT_MIN || longInt > INT_MAX) {
+            std::cerr << "Error: integer overflow\n";
+            return;
+        }
+
+        int value = static_cast<int>(longInt);
+        if (seen.find(value) != seen.end()) {
+            std::cerr << "Error: duplicate number " << value << "\n";
+            return;
+        }
+        seen.insert(value);
+        container.push_back(value);
+        av++;
+    }
+}
+
 template<typename T>
 void PmergeMe::mergeInsertionSort(T& container, int groupSize)
 {
