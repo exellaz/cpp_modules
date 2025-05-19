@@ -6,7 +6,7 @@
 /*   By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 14:56:43 by kkhai-ki          #+#    #+#             */
-/*   Updated: 2025/04/27 14:25:48 by kkhai-ki         ###   ########.fr       */
+/*   Updated: 2025/05/19 08:03:58 by kkhai-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,41 @@ void test_addNumber()
 	}
 }
 
+void test_addMultipleNumbers()
+{
+	std::cout << YELLOW << "[Test] addMultipleNumbers" << RESET << "\n";
+	{
+		Span span(6);
+		std::vector<int> nums;
+		nums.push_back(10);
+		nums.push_back(20);
+		nums.push_back(30);
+
+		std::cout << "Adding numbers: 10, 20, 30 using addMultipleNumbers...\n";
+		span.addMultipleNumbers(nums.begin(), nums.end());
+
+		std::cout << "Numbers: ";
+		printContainer(span.getNumbers());
+		std::cout << "\n";
+	}
+	{
+		Span span(3);
+		std::vector<int> nums;
+		nums.push_back(5);
+		nums.push_back(6);
+		nums.push_back(7);
+		nums.push_back(8);
+
+		try {
+			std::cout << "Adding 4 numbers into Span with max size of 3...\n";
+			span.addMultipleNumbers(nums.begin(), nums.end());
+		}
+		catch (const std::exception& e) {
+			std::cout << "Exception (addMultipleNumbers): " << e.what() << "\n\n";
+		}
+	}
+}
+
 void test_shortestSpan()
 {
 	std::cout << YELLOW << "[Test] shortestSpan" << RESET << "\n";
@@ -188,6 +223,7 @@ void	run_tests()
 		test_copyConstructor,
 		test_copyAssignment,
 		test_addNumber,
+		test_addMultipleNumbers,
 		test_shortestSpan,
 		test_longestSpan,
 		test_subjectPDF,

@@ -6,7 +6,7 @@
 /*   By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 14:57:53 by kkhai-ki          #+#    #+#             */
-/*   Updated: 2025/04/24 14:15:35 by kkhai-ki         ###   ########.fr       */
+/*   Updated: 2025/05/19 07:56:33 by kkhai-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ class Span
 		~Span();
 
 		void	addNumber(int number);
+		void	addMultipleNumbers(std::vector<int>::const_iterator begin,\
+					std::vector<int>::const_iterator end);
 		Span&	operator=(const Span& src);
 
 		int					longestSpan();

@@ -6,7 +6,7 @@
 /*   By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 14:57:50 by kkhai-ki          #+#    #+#             */
-/*   Updated: 2025/04/25 13:11:46 by kkhai-ki         ###   ########.fr       */
+/*   Updated: 2025/05/19 08:02:40 by kkhai-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,15 @@ void	Span::addNumber(int number)
 		throw std::out_of_range("Max size exceeded");
 
 	_numbers.push_back(number);
+}
+
+void	Span::addMultipleNumbers(std::vector<int>::const_iterator begin,\
+			std::vector<int>::const_iterator end)
+{
+	if (_numbers.size() + std::distance(begin, end) > _maxSize)
+		throw std::logic_error("Max size exceeded");
+	for (std::vector<int>::const_iterator it = begin; it < end; ++it)
+		_numbers.push_back(*it);
 }
 
 int	Span::longestSpan()
