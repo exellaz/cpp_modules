@@ -6,7 +6,7 @@
 /*   By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 08:19:51 by kkhai-ki          #+#    #+#             */
-/*   Updated: 2025/04/14 13:59:56 by kkhai-ki         ###   ########.fr       */
+/*   Updated: 2025/05/19 14:58:04 by kkhai-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,11 +78,14 @@ static bool	checkInput(const std::string& input, char *endptr)
 {
 	if (input.length() == 0)
 		return false;
-	else if (input.length() > 1) {
-		for (size_t i = 0; i < input.length(); i++) {
-			if (!std::isdigit(input[i]) && input[i] != 'f' && input[i] != '.')
-				return false;
-		}
+
+	size_t i = 0;
+	if (input[0] == '-' || input[0] == '+')
+		++i;
+	while (i < input.length()) {
+		if (!std::isdigit(input[i]) && input[i] != 'f' && input[i] != '.')
+			return false;
+		++i;
 	}
 	if (*endptr != 'f' && *endptr != '\0')
 		return false;

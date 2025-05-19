@@ -6,7 +6,7 @@
 /*   By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 14:43:18 by kkhai-ki          #+#    #+#             */
-/*   Updated: 2025/04/14 09:35:24 by kkhai-ki         ###   ########.fr       */
+/*   Updated: 2025/05/19 14:58:17 by kkhai-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,13 @@ enum e_type {
 class ScalarConverter
 {
 	public:
+		static void	convert(const std::string& input);
+
+	private:
 		ScalarConverter();
 		ScalarConverter(ScalarConverter& src);
 		ScalarConverter&	operator=(ScalarConverter& src);
 		~ScalarConverter();
-
-		static void	convert(const std::string& input);
-
-	private:
 };
 
 e_type	checkTypes(const std::string& input);
