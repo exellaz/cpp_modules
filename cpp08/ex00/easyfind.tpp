@@ -6,9 +6,12 @@
 /*   By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 13:49:24 by kkhai-ki          #+#    #+#             */
-/*   Updated: 2025/04/21 14:46:13 by kkhai-ki         ###   ########.fr       */
+/*   Updated: 2025/05/22 15:59:17 by kkhai-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef EASYFIND_TPP
+# define EASYFIND_TPP
 
 #include "easyfind.hpp"
 
@@ -55,3 +58,5 @@ void	printContainer(T& container)
 	}
 	std::cout << "}\n";
 }
+
+#endif

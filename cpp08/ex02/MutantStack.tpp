@@ -6,11 +6,14 @@
 /*   By: kkhai-ki <kkhai-ki@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 15:03:34 by kkhai-ki          #+#    #+#             */
-/*   Updated: 2025/04/27 14:57:30 by kkhai-ki         ###   ########.fr       */
+/*   Updated: 2025/05/22 15:58:49 by kkhai-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "MutantStack.hpp"
+#ifndef MUTANTSTACK_TPP
+# define MUTANTSTACK_TPP
+
+# include "MutantStack.hpp"
 
 template <typename T>
 MutantStack<T>::MutantStack()
@@ -84,3 +87,5 @@ typename MutantStack<T>::const_reverse_iterator MutantStack<T>::rend() const
 {
     return this->c.rend();
 }
+
+#endif

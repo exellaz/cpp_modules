@@ -1,4 +1,7 @@
-#include "PmergeMe.hpp"
+#ifndef PMERGEME_TPP
+# define PMERGEME_TPP
+
+# include "PmergeMe.hpp"
 
 template<typename Container>
 void PmergeMe::initIntContainer(Container& container, char* av[])
@@ -177,3 +180,5 @@ bool PmergeMe::comp(T a, T b)
     _comparisons++;
     return *a < *b;
 }
+
+#endif
